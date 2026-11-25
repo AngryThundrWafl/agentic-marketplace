@@ -1,0 +1,39 @@
+# Registered product surfaces (<vendor>.<product>.<surface>) and reverse-domain client namespaces.
+# A row without an evidence file in capabilities/evidence/ is treated as `unknown`.
+harnesses:
+  - id: github.copilot.cli
+    vendor: GitHub
+    product: Copilot CLI
+    surface: cli
+    reverseDomainNamespace: com.github.copilot
+    documentationUrl: https://docs.github.com/en/copilot/reference/plugin-and-marketplace-reference
+    packageFormats:
+      - agent-plugins-1.0
+
+  - id: anthropic.claude-code.cli
+    vendor: Anthropic
+    product: Claude Code
+    surface: cli
+    reverseDomainNamespace: null
+    documentationUrl: https://code.claude.com/docs/en/plugins
+    packageFormats:
+      - claude-native
+
+  - id: openai.codex.cli
+    vendor: OpenAI
+    product: Codex CLI
+    surface: cli
+    reverseDomainNamespace: com.openai
+    documentationUrl: https://developers.openai.com/plugins/build/plugins
+    packageFormats:
+      - agent-plugins-1.0
+      - codex-native
+
+  - id: google.antigravity.app
+    vendor: Google
+    product: Antigravity
+    surface: app
+    reverseDomainNamespace: null
+    documentationUrl: https://antigravity.google/docs/marketplace/
+    packageFormats:
+      - antigravity-native

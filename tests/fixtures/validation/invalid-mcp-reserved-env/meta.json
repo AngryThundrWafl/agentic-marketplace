@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/internal/meta.schema.json",
+  "targets": [
+    { "id": "github.copilot.cli", "packageFormat": "agent-plugins-1.0" }
+  ],
+  "components": [
+    {
+      "id": "invalid-mcp-reserved-env:mcp-server:bad",
+      "source": "agent-plugin/mcp.json",
+      "optional": false,
+      "translations": { "github.copilot.cli": "exact" }
+    }
+  ]
+}

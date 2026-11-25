@@ -1,0 +1,13 @@
+{
+  "$schema": "../../schemas/internal/capability.schema.json",
+  "targetId": "google.antigravity.app",
+  "featureId": "antigravity-native-plugin",
+  "status": "unknown",
+  "mechanism": ".antigravity-plugin/plugin.json (v1 schema) + mcp_config.json + skills/",
+  "documentationUrl": "https://antigravity.google/docs/marketplace/",
+  "lastVerifiedDate": "2026-11-25",
+  "testedRuntimeVersion": "0.0.0-unverified",
+  "knownLimitations": [
+    "Antigravity v1 plugin.json fields (displayName, suggestedPrompts, logo, skills) observed in source repo; live agy plugin install verification pending."
+  ]
+}

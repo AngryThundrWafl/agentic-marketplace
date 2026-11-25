@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/internal/meta.schema.json",
+  "targets": [
+    {
+      "id": "github.copilot.cli",
+      "minVersion": "1.0.0",
+      "packageFormat": "agent-plugins-1.0"
+    }
+  ],
+  "components": [
+    {
+      "id": "valid-minimal:skill:hello",
+      "source": "agent-plugin/skills/hello/SKILL.md",
+      "optional": false,
+      "translations": {
+        "github.copilot.cli": "exact"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "valid-minimal",
+  "version": "1.0.0",
+  "description": "Minimal valid Agent Plugins 1.0.0 fixture"
+}

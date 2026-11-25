@@ -1,0 +1,34 @@
+{
+  "name": "agentic-marketplace",
+  "owner": {
+    "name": "Agentic Marketplace Maintainers"
+  },
+  "description": "Generated Claude Code marketplace catalog derived from compatibility.json.",
+  "plugins": [
+    {
+      "name": "dockhand-gitops",
+      "source": "./plugins/dockhand-gitops",
+      "version": "1.0.1",
+      "description": "Observe and validate multi-host GitOps Docker stacks via mcp-dockhand with read-only monitoring and confirmation-gated container lifecycle controls.",
+      "compatibility": {
+        "emittedCount": 2,
+        "omittedCount": 2,
+        "securityWarnings": [
+          "Plugin requires external secrets/config: DOCKHAND_MCP_URL (env), DOCKHAND_MCP_AUTH_TOKEN (env)",
+          "Claude Code MCP servers and hooks execute outside the sandbox."
+        ]
+      }
+    },
+    {
+      "name": "prompt-engineering",
+      "source": "./plugins/prompt-engineering",
+      "version": "1.4.0",
+      "description": "Portable Agent Plugin providing a live-distilled Prompting Reference Pack for Claude, Google Gemini, and open-weight models plus two skills (skill-creator and prompt-creator) for authoring compliant Agent Skills and tested, versioned prompts.",
+      "compatibility": {
+        "emittedCount": 2,
+        "omittedCount": 1,
+        "securityWarnings": []
+      }
+    }
+  ]
+}

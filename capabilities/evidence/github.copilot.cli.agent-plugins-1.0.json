@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schemas/internal/capability.schema.json",
+  "targetId": "github.copilot.cli",
+  "featureId": "agent-plugins-1.0",
+  "status": "standard",
+  "mechanism": "copilot plugin install <path-to-agent-plugin/> + copilot plugin list",
+  "documentationUrl": "https://docs.github.com/en/copilot/reference/plugin-and-marketplace-reference",
+  "lastVerifiedDate": "2026-11-25",
+  "testedRuntimeVersion": "1.0.114",
+  "testReference": "tests/portable-plugins-copilot.test.ts",
+  "knownLimitations": [
+    "Direct local path installs emit a deprecation warning in 1.0.114 noting future preference for plugin@marketplace."
+  ]
+}

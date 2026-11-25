@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentic-marketplace.local/schemas/internal/capability.schema.json",
+  "title": "Harness Capability Evidence Entry",
+  "description": "Evidence-backed capability record under capabilities/evidence/.",
+  "type": "object",
+  "required": [
+    "targetId",
+    "featureId",
+    "status",
+    "mechanism",
+    "documentationUrl",
+    "lastVerifiedDate",
+    "testedRuntimeVersion"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "targetId": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+\\.[a-z0-9-]+\\.[a-z0-9-]+$"
+    },
+    "featureId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "native",
+        "standard",
+        "adapter",
+        "preview",
+        "experimental",
+        "unsupported",
+        "unknown"
+      ]
+    },
+    "mechanism": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documentationUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "lastVerifiedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "testedRuntimeVersion": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "enum": ["latest", "LATEST"]
+      }
+    },
+    "testReference": {
+      "type": "string"
+    },
+    "knownLimitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

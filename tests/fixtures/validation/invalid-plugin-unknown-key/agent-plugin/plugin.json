@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "invalid-plugin-unknown-key",
+  "version": "1.0.0",
+  "agents": ["agents/reviewer.md"]
+}

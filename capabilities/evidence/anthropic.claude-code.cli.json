@@ -1,0 +1,13 @@
+{
+  "$schema": "../../schemas/internal/capability.schema.json",
+  "targetId": "anthropic.claude-code.cli",
+  "featureId": "claude-native-plugin",
+  "status": "unknown",
+  "mechanism": ".claude-plugin/plugin.json + root skills/, commands/, agents/, hooks/hooks.json, .mcp.json",
+  "documentationUrl": "https://code.claude.com/docs/en/plugins",
+  "lastVerifiedDate": "2026-11-25",
+  "testedRuntimeVersion": "0.0.0-unverified",
+  "knownLimitations": [
+    "Claude Code CLI not installed in current verification environment; runtime behavior unverified."
+  ]
+}

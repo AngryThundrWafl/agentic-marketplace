@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schemas/internal/meta.schema.json",
+  "targets": [
+    {
+      "id": "github.copilot.cli",
+      "minVersion": "1.0.0",
+      "packageFormat": "agent-plugins-1.0"
+    },
+    {
+      "id": "anthropic.claude-code.cli",
+      "packageFormat": "claude-native"
+    },
+    {
+      "id": "google.antigravity.app",
+      "packageFormat": "antigravity-native"
+    }
+  ],
+  "components": [
+    {
+      "id": "dockhand-gitops:skill:dockhand-gitops",
+      "source": "agent-plugin/skills/dockhand-gitops/SKILL.md",
+      "optional": false,
+      "translations": {
+        "github.copilot.cli": "exact",
+        "anthropic.claude-code.cli": "exact",
+        "google.antigravity.app": "exact"
+      }
+    },
+    {
+      "id": "dockhand-gitops:native-override:antigravity-plugin",
+      "source": "overrides/google.antigravity.app/.antigravity-plugin/plugin.json",
+      "optional": true,
+      "translations": {
+        "github.copilot.cli": "unsupported",
+        "anthropic.claude-code.cli": "unsupported",
+        "google.antigravity.app": "exact"
+      }
+    },
+    {
+      "id": "dockhand-gitops:native-override:antigravity-mcp",
+      "source": "overrides/google.antigravity.app/mcp_config.json",
+      "optional": true,
+      "translations": {
+        "github.copilot.cli": "unsupported",
+        "anthropic.claude-code.cli": "unsupported",
+        "google.antigravity.app": "exact"
+      }
+    },
+    {
+      "id": "dockhand-gitops:native-override:claude-mcp",
+      "source": "overrides/anthropic.claude-code.cli/.mcp.json",
+      "optional": true,
+      "translations": {
+        "github.copilot.cli": "unsupported",
+        "anthropic.claude-code.cli": "exact",
+        "google.antigravity.app": "unsupported"
+      }
+    }
+  ],
+  "secrets": [
+    {
+      "name": "DOCKHAND_MCP_URL",
+      "required": true,
+      "provisioning": "env",
+      "server": "dockhand"
+    },
+    {
+      "name": "DOCKHAND_MCP_AUTH_TOKEN",
+      "required": true,
+      "provisioning": "env",
+      "server": "dockhand"
+    }
+  ],
+  "reviewedAlternatives": []
+}

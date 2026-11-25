@@ -1,0 +1,59 @@
+# Per-target capability matrix and budgets.
+# Status vocabulary: native | standard | adapter | preview | experimental | unsupported | unknown
+# `unknown` MUST never be rendered, shipped, or marketed as supported.
+targets:
+  github.copilot.cli:
+    agentPlugins10: standard
+    pluginRootExpansion: unknown
+    agentSkills: standard
+    mcpStdio: unknown
+    mcpStreamableHttp: unknown
+    mcpSse: unknown
+    agents: unknown
+    commands: unknown
+    rules: unknown
+    hooks: unknown
+    budgets:
+      skillDescriptionMaxChars: 1024
+
+  anthropic.claude-code.cli:
+    agentPlugins10: unsupported
+    pluginRootExpansion: unknown
+    agentSkills: unknown
+    mcpStdio: unknown
+    mcpStreamableHttp: unknown
+    mcpSse: unknown
+    agents: unknown
+    commands: unknown
+    rules: unknown
+    hooks: unknown
+    budgets:
+      skillDescriptionMaxChars: 1024
+
+  openai.codex.cli:
+    agentPlugins10: unknown
+    pluginRootExpansion: unknown
+    agentSkills: unknown
+    mcpStdio: unknown
+    mcpStreamableHttp: unknown
+    mcpSse: unknown
+    agents: unknown
+    commands: unknown
+    rules: unknown
+    hooks: unknown
+    budgets:
+      skillDescriptionMaxChars: 1024
+
+  google.antigravity.app:
+    agentPlugins10: unknown
+    pluginRootExpansion: unknown
+    agentSkills: unknown
+    mcpStdio: unknown
+    mcpStreamableHttp: unknown
+    mcpSse: unknown
+    agents: unknown
+    commands: unknown
+    rules: unknown
+    hooks: unknown
+    budgets:
+      skillDescriptionMaxChars: 1024

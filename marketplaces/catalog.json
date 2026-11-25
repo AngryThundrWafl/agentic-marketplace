@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "compatibility.json",
+  "entries": [
+    {
+      "plugin": "dockhand-gitops",
+      "version": "1.0.1",
+      "target": "github.copilot.cli",
+      "packageFormat": "agent-plugins-1.0",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "dockhand-gitops:skill:dockhand-gitops",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "dockhand-gitops:native-override:antigravity-plugin",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:antigravity-mcp",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:claude-mcp",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "dockhand-gitops",
+      "version": "1.0.1",
+      "target": "anthropic.claude-code.cli",
+      "packageFormat": "claude-native",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "dockhand-gitops:skill:dockhand-gitops",
+          "status": "exact"
+        },
+        {
+          "id": "dockhand-gitops:native-override:claude-mcp",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "dockhand-gitops:native-override:antigravity-plugin",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:antigravity-mcp",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "dockhand-gitops",
+      "version": "1.0.1",
+      "target": "google.antigravity.app",
+      "packageFormat": "antigravity-native",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "dockhand-gitops:skill:dockhand-gitops",
+          "status": "exact"
+        },
+        {
+          "id": "dockhand-gitops:native-override:antigravity-plugin",
+          "status": "exact"
+        },
+        {
+          "id": "dockhand-gitops:native-override:antigravity-mcp",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "dockhand-gitops:native-override:claude-mcp",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "prompt-engineering",
+      "version": "1.4.0",
+      "target": "github.copilot.cli",
+      "packageFormat": "agent-plugins-1.0",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "prompt-engineering:skill:prompt-creator",
+          "status": "exact"
+        },
+        {
+          "id": "prompt-engineering:skill:skill-creator",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "prompt-engineering:native-override:antigravity-plugin",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "prompt-engineering",
+      "version": "1.4.0",
+      "target": "anthropic.claude-code.cli",
+      "packageFormat": "claude-native",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "prompt-engineering:skill:prompt-creator",
+          "status": "exact"
+        },
+        {
+          "id": "prompt-engineering:skill:skill-creator",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "prompt-engineering:native-override:antigravity-plugin",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "prompt-engineering",
+      "version": "1.4.0",
+      "target": "google.antigravity.app",
+      "packageFormat": "antigravity-native",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "prompt-engineering:skill:prompt-creator",
+          "status": "exact"
+        },
+        {
+          "id": "prompt-engineering:skill:skill-creator",
+          "status": "exact"
+        },
+        {
+          "id": "prompt-engineering:native-override:antigravity-plugin",
+          "status": "exact"
+        }
+      ],
+      "omitted": []
+    }
+  ]
+}

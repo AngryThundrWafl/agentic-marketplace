@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "id": "typecheck",
+      "command": "corepack pnpm typecheck",
+      "description": "TypeScript strict check across build/ and tests/"
+    },
+    {
+      "id": "unit_and_behavioral_tests",
+      "command": "corepack pnpm test",
+      "description": "Vitest suite covering schemas, containment, Copilot CLI install, MCP/secrets/isolation, capability registry, NormalizedPlugin, planner, all adapters, permission matrices, sandbox profile, SBOM & catalogs"
+    },
+    {
+      "id": "plugin_validation_gate",
+      "command": "corepack pnpm validate:plugins",
+      "description": "Fail-closed validation gate on fixtures and all plugins/"
+    },
+    {
+      "id": "full_build",
+      "command": "corepack pnpm build",
+      "description": "Full reproducible build of dist/<plugin>/<target>/ and marketplaces/"
+    }
+  ]
+}

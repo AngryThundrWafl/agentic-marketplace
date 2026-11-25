@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/internal/meta.schema.json",
+  "targets": [
+    { "id": "github.copilot.cli", "packageFormat": "agent-plugins-1.0" }
+  ],
+  "components": [
+    {
+      "id": "invalid-disallowed-entry:skill:hello",
+      "source": "agent-plugin/skills/hello/SKILL.md",
+      "optional": false,
+      "translations": { "github.copilot.cli": "exact" }
+    }
+  ]
+}

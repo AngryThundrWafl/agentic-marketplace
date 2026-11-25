@@ -1,0 +1,13 @@
+{
+  "$schema": "../../schemas/internal/capability.schema.json",
+  "targetId": "openai.codex.cli",
+  "featureId": "agent-plugins-1.0-com.openai",
+  "status": "unknown",
+  "mechanism": "plugin.json + extensions[\"com.openai\"] / .codex-plugin/",
+  "documentationUrl": "https://developers.openai.com/plugins/build/plugins",
+  "lastVerifiedDate": "2026-11-25",
+  "testedRuntimeVersion": "0.0.0-unverified",
+  "knownLimitations": [
+    "Codex CLI not installed in current verification environment; exact extensions[\"com.openai\"] schema pending live runtime verification."
+  ]
+}
