@@ -26,6 +26,10 @@
         {
           "id": "dockhand-gitops:native-override:claude-mcp",
           "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:opencode-mcp",
+          "optional": true
         }
       ]
     },
@@ -53,6 +57,10 @@
         {
           "id": "dockhand-gitops:native-override:antigravity-mcp",
           "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:opencode-mcp",
+          "optional": true
         }
       ]
     },
@@ -79,6 +87,72 @@
       "omitted": [
         {
           "id": "dockhand-gitops:native-override:claude-mcp",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:opencode-mcp",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "dockhand-gitops",
+      "version": "1.0.1",
+      "target": "opencode.opencode.cli",
+      "packageFormat": "opencode-native",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "dockhand-gitops:skill:dockhand-gitops",
+          "status": "exact"
+        },
+        {
+          "id": "dockhand-gitops:native-override:opencode-mcp",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "dockhand-gitops:native-override:antigravity-plugin",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:antigravity-mcp",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:claude-mcp",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "dockhand-gitops",
+      "version": "1.0.1",
+      "target": "earendil.pi.package",
+      "packageFormat": "pi-package",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "dockhand-gitops:skill:dockhand-gitops",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "dockhand-gitops:native-override:antigravity-plugin",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:antigravity-mcp",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:claude-mcp",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:opencode-mcp",
           "optional": true
         }
       ]
@@ -150,6 +224,52 @@
         }
       ],
       "omitted": []
+    },
+    {
+      "plugin": "prompt-engineering",
+      "version": "1.4.0",
+      "target": "opencode.opencode.cli",
+      "packageFormat": "opencode-native",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "prompt-engineering:skill:prompt-creator",
+          "status": "exact"
+        },
+        {
+          "id": "prompt-engineering:skill:skill-creator",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "prompt-engineering:native-override:antigravity-plugin",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "plugin": "prompt-engineering",
+      "version": "1.4.0",
+      "target": "earendil.pi.package",
+      "packageFormat": "pi-package",
+      "adapterVersion": "0.1.0",
+      "emitted": [
+        {
+          "id": "prompt-engineering:skill:prompt-creator",
+          "status": "exact"
+        },
+        {
+          "id": "prompt-engineering:skill:skill-creator",
+          "status": "exact"
+        }
+      ],
+      "omitted": [
+        {
+          "id": "prompt-engineering:native-override:antigravity-plugin",
+          "optional": true
+        }
+      ]
     }
   ]
 }

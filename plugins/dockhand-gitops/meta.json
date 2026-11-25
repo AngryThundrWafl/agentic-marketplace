@@ -13,6 +13,14 @@
     {
       "id": "google.antigravity.app",
       "packageFormat": "antigravity-native"
+    },
+    {
+      "id": "opencode.opencode.cli",
+      "packageFormat": "opencode-native"
+    },
+    {
+      "id": "earendil.pi.package",
+      "packageFormat": "pi-package"
     }
   ],
   "components": [
@@ -23,7 +31,9 @@
       "translations": {
         "github.copilot.cli": "exact",
         "anthropic.claude-code.cli": "exact",
-        "google.antigravity.app": "exact"
+        "google.antigravity.app": "exact",
+        "opencode.opencode.cli": "exact",
+        "earendil.pi.package": "exact"
       }
     },
     {
@@ -33,7 +43,9 @@
       "translations": {
         "github.copilot.cli": "unsupported",
         "anthropic.claude-code.cli": "unsupported",
-        "google.antigravity.app": "exact"
+        "google.antigravity.app": "exact",
+        "opencode.opencode.cli": "unsupported",
+        "earendil.pi.package": "unsupported"
       }
     },
     {
@@ -43,7 +55,9 @@
       "translations": {
         "github.copilot.cli": "unsupported",
         "anthropic.claude-code.cli": "unsupported",
-        "google.antigravity.app": "exact"
+        "google.antigravity.app": "exact",
+        "opencode.opencode.cli": "unsupported",
+        "earendil.pi.package": "unsupported"
       }
     },
     {
@@ -53,7 +67,21 @@
       "translations": {
         "github.copilot.cli": "unsupported",
         "anthropic.claude-code.cli": "exact",
-        "google.antigravity.app": "unsupported"
+        "google.antigravity.app": "unsupported",
+        "opencode.opencode.cli": "unsupported",
+        "earendil.pi.package": "unsupported"
+      }
+    },
+    {
+      "id": "dockhand-gitops:native-override:opencode-mcp",
+      "source": "overrides/opencode.opencode.cli/opencode.json",
+      "optional": true,
+      "translations": {
+        "github.copilot.cli": "unsupported",
+        "anthropic.claude-code.cli": "unsupported",
+        "google.antigravity.app": "unsupported",
+        "opencode.opencode.cli": "exact",
+        "earendil.pi.package": "unsupported"
       }
     }
   ],

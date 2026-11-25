@@ -37,3 +37,21 @@ harnesses:
     documentationUrl: https://antigravity.google/docs/marketplace/
     packageFormats:
       - antigravity-native
+
+  - id: opencode.opencode.cli
+    vendor: OpenCode
+    product: OpenCode CLI
+    surface: cli
+    reverseDomainNamespace: null
+    documentationUrl: https://opencode.ai/docs/skills
+    packageFormats:
+      - opencode-native
+
+  - id: earendil.pi.package
+    vendor: Earendil
+    product: Pi Coding Agent
+    surface: package
+    reverseDomainNamespace: null
+    documentationUrl: https://github.com/earendil-works/pi-coding-agent
+    packageFormats:
+      - pi-package

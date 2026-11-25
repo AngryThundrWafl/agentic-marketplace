@@ -10,7 +10,13 @@ describe("full build, CycloneDX 1.6 SBOM, provenance, and marketplace catalogs",
     await runFullBuild(REPO_ROOT);
 
     for (const plugin of ["dockhand-gitops", "prompt-engineering"]) {
-      for (const target of ["github.copilot.cli", "anthropic.claude-code.cli", "google.antigravity.app"]) {
+      for (const target of [
+        "github.copilot.cli",
+        "anthropic.claude-code.cli",
+        "google.antigravity.app",
+        "opencode.opencode.cli",
+        "earendil.pi.package",
+      ]) {
         const outDir = path.join(REPO_ROOT, "dist", plugin, target);
         expect(fs.existsSync(path.join(outDir, "manifest.json"))).toBe(true);
         expect(fs.existsSync(path.join(outDir, "compatibility.json"))).toBe(true);
@@ -36,6 +42,6 @@ describe("full build, CycloneDX 1.6 SBOM, provenance, and marketplace catalogs",
     const unifiedCatalog = JSON.parse(
       fs.readFileSync(path.join(REPO_ROOT, "marketplaces/catalog.json"), "utf8"),
     ) as { entries: unknown[] };
-    expect(unifiedCatalog.entries).toHaveLength(6);
+    expect(unifiedCatalog.entries).toHaveLength(10);
   });
 });

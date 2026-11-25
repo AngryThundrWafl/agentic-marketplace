@@ -57,3 +57,31 @@ targets:
     hooks: unknown
     budgets:
       skillDescriptionMaxChars: 1024
+
+  opencode.opencode.cli:
+    agentPlugins10: unsupported
+    pluginRootExpansion: unknown
+    agentSkills: native
+    mcpStdio: unknown
+    mcpStreamableHttp: native
+    mcpSse: unknown
+    agents: unknown
+    commands: unknown
+    rules: unknown
+    hooks: unknown
+    budgets:
+      skillDescriptionMaxChars: 1024
+
+  earendil.pi.package:
+    agentPlugins10: unsupported
+    pluginRootExpansion: unknown
+    agentSkills: native
+    mcpStdio: unsupported
+    mcpStreamableHttp: unsupported
+    mcpSse: unsupported
+    agents: unknown
+    commands: unknown
+    rules: unknown
+    hooks: unknown
+    budgets:
+      skillDescriptionMaxChars: 1024
