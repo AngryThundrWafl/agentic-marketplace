@@ -5,37 +5,37 @@ Phase 0: [DONE]
 - [x] pnpm + TypeScript workspace scaffolded (package.json, pnpm-workspace.yaml, tsconfig.json, .gitignore, pnpm-lock.yaml)
 - [x] Pinned Agent Plugins 1.0.0 schemas (schemas/plugin.schema.json, schemas/mcp.schema.json)
 - [x] Internal schemas created (schemas/internal/meta.schema.json, compatibility.schema.json, capability.schema.json)
-- [x] Phase 0 fixtures and validation gate added (build/validate-phase0.ts, tests/phase0.test.ts, .github/workflows/ci.yml)
+- [x] Phase 0 fixtures and validation gate added (build/validate-plugins.ts, tests/schema-and-containment.test.ts, .github/workflows/ci.yml)
 - [x] Inventoried three owned source marketplaces (agent-plugin-marketplace, pi-agent-extension-marketplace, opencode-extension-marketplace)
-- [ ] User confirmation on Appendix B decisions & Phase 1 migration scope (awaiting user input)
+- [x] User confirmation on Appendix B decisions & Phase 1 migration scope (resolved in docs/migration-plan.md Appendix B)
 
 Phase 1: [DONE]
 - [x] Resolved Appendix B decisions in docs/releases.md, docs/testing.md, and docs/migration-plan.md
 - [x] Migrated dockhand-gitops into plugins/dockhand-gitops/ (agent-plugin/ + meta.json + overrides/)
 - [x] Migrated prompt-engineering into plugins/prompt-engineering/ (agent-plugin/ with self-contained skill references/pack/ + meta.json + overrides/)
-- [x] Added Agent Skills frontmatter & budget validation to build/validate-phase0.ts
-- [x] Verified behavioral install & listing in GitHub Copilot CLI 1.0.114 (tests/phase1.test.ts)
+- [x] Added Agent Skills frontmatter & budget validation to build/validate-plugins.ts
+- [x] Verified behavioral install & listing in GitHub Copilot CLI 1.0.114 (tests/portable-plugins-copilot.test.ts)
 
 Phase 2: [DONE]
 - [x] MCP validation (build/validate-mcp.ts: HTTPS/loopback, duplicate case-insensitive headers, stdio single-token & containment)
 - [x] Secrets scan (build/secrets-scan.ts: PEM keys, GitHub/AWS/Slack/vendor tokens, hardcoded Bearer tokens)
 - [x] Per-component failure isolation in validatePluginDir (fatalIssues vs components[])
-- [x] Phase 2 test suite (tests/phase2.test.ts)
+- [x] Phase 2 test suite (tests/mcp-secrets-and-isolation.test.ts)
 
 Phase 3: [DONE]
 - [x] Created capabilities/harnesses.yaml, capabilities/features.yaml, and capabilities/evidence/*.json
 - [x] Implemented build/capabilities/registry.ts with 7-status validation and 90-day staleness check
 - [x] Implemented typed NormalizedPlugin model (build/model/component.ts, build/model/normalize.ts)
-- [x] Added Phase 3 test suite (tests/phase3.test.ts)
+- [x] Added Phase 3 test suite (tests/capability-registry-and-model.test.ts)
 
 Phase 4: [DONE]
 - [x] Implemented build/translate/plan.ts (fail-closed translation planner)
 - [x] Implemented build/translate/compatibility.ts (compatibility.json + COMPATIBILITY.md generator)
-- [x] Added Phase 4 test suite (tests/phase4.test.ts)
+- [x] Added Phase 4 test suite (tests/translation-plan-and-compatibility.test.ts)
 
 Phase 5: [DONE]
 - [x] Implemented HarnessAdapter interface (build/adapters/types.ts) & content-hash manifest (build/emit/manifest.ts)
-- [x] Implemented github.copilot.cli adapter + permissions.md + behavioral Copilot CLI dist install test (tests/phase5.test.ts)
+- [x] Implemented github.copilot.cli adapter + permissions.md + behavioral Copilot CLI dist install test (tests/copilot-adapter.test.ts)
 
 Phase 6: [DONE]
 - [x] Implemented anthropic.claude-code.cli adapter (build/adapters/anthropic.claude-code.cli/)
@@ -43,17 +43,17 @@ Phase 6: [DONE]
 
 Phase 7: [DONE]
 - [x] Implemented canonical translator (build/translate/canonical.ts) and permission matrix verifier (build/translate/permissions.ts)
-- [x] Verified per-adapter permissions.md matrices and escalation fail-closed checks (tests/phase6_7.test.ts)
+- [x] Verified per-adapter permissions.md matrices and escalation fail-closed checks (tests/claude-and-antigravity-adapters.test.ts, tests/opencode-and-pi-adapters.test.ts)
 
 Phase 8: [DONE]
 - [x] Implemented rootless OCI sandbox profile builder (build/sandbox/runner.ts)
-- [x] Verified canonical hooks & agents + native overrides emission in isolated fixture (tests/phase8.test.ts)
+- [x] Verified canonical hooks & agents + native overrides emission in isolated fixture (tests/hooks-and-sandbox.test.ts)
 
 Phase 9: [DONE]
 - [x] Implemented marketplace catalog generator (build/release/catalog.ts)
 - [x] Implemented CycloneDX 1.6 JSON SBOM, SHA256SUMS, and provenance bundle (build/release/sbom.ts)
-- [x] Implemented full build & release CLI (build/cli.ts) + tests/phase9.test.ts
+- [x] Implemented full build & release CLI (build/cli.ts) + tests/release-sbom-and-catalogs.test.ts
 
 Phase 10: [DONE]
 - [x] Documentation parity audit (docs/architecture.md, releases.md, testing.md, migration-plan.md aligned with Appendix B decisions and implemented build/)
-- [x] Full release gate passing (typecheck + all Vitest suites + validate:phase0 + full dist/ & marketplaces/ build)
+- [x] Full release gate passing (typecheck + all Vitest suites + validate:plugins + full dist/ & marketplaces/ build)
