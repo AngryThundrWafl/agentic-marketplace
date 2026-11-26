@@ -3,10 +3,10 @@
   "targetId": "opencode.opencode.cli",
   "featureId": "opencode-native",
   "status": "native",
-  "mechanism": ".opencode/skills/<name>/SKILL.md + opencode.json (mcp.<name> with {env:VAR} expansion)",
+  "mechanism": ".opencode/skills/<name>/SKILL.md + opencode.json (mcp.servers.<name> with {env:VAR} expansion)",
   "documentationUrl": "https://opencode.ai/docs/skills",
-  "lastVerifiedDate": "2026-11-25",
-  "testedRuntimeVersion": "1.19.6",
+  "lastVerifiedDate": "2026-11-26",
+  "testedRuntimeVersion": "2.4.2",
   "testReference": "tests/opencode-and-pi-adapters.test.ts",
   "knownLimitations": [
     "Not an Agent Plugins 1.0 package client; uses .opencode/skills/ and opencode.json.",

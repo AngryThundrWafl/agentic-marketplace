@@ -61,7 +61,16 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     }
 
     const dockhandDist = path.join(outRoot1, "dockhand-gitops/opencode.opencode.cli");
-    expect(fs.existsSync(path.join(dockhandDist, "opencode.json"))).toBe(true);
+    const openCodeConfigPath = path.join(dockhandDist, "opencode.json");
+    expect(fs.existsSync(openCodeConfigPath)).toBe(true);
+    const openCodeConfig = JSON.parse(fs.readFileSync(openCodeConfigPath, "utf8")) as {
+      skills?: string[];
+      mcp?: { servers?: { dockhand?: { type?: string; url?: string } } };
+    };
+    expect(openCodeConfig.skills).toEqual(["./.opencode/skills"]);
+    expect(openCodeConfig.mcp?.servers?.dockhand?.type).toBe("remote");
+    expect(openCodeConfig.mcp?.servers?.dockhand?.url).toBe("{env:DOCKHAND_MCP_URL}");
+    expect(fs.existsSync(path.join(dockhandDist, ".opencode/skills/dockhand-gitops/SKILL.md"))).toBe(true);
 
     const env = {
       ...process.env,
@@ -69,29 +78,56 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
       DOCKHAND_MCP_AUTH_TOKEN: "test-token",
     };
 
-    const dockhandSkills = execFileSync("opencode", ["debug", "skill"], {
-      cwd: dockhandDist,
-      env,
-      encoding: "utf8",
-    });
-    expect(dockhandSkills).toContain('"name": "dockhand-gitops"');
+    const openCodeVersion = execFileSync("opencode", ["--version"], { encoding: "utf8" }).trim();
+    const isOpenCodeV2 = /\bv?2\./.test(openCodeVersion);
 
-    const mcpList = execFileSync("opencode", ["mcp", "list"], {
+    const dockhandDebugConfig = execFileSync("opencode", ["debug", "config"], {
       cwd: dockhandDist,
       env,
       encoding: "utf8",
     });
-    expect(mcpList).toContain("dockhand");
-    expect(mcpList).toContain("https://example.invalid/mcp");
+    expect(dockhandDebugConfig).toContain("dockhand");
+    expect(dockhandDebugConfig).toContain(".opencode");
 
     const promptDist = path.join(outRoot1, "prompt-engineering/opencode.opencode.cli");
-    const promptSkills = execFileSync("opencode", ["debug", "skill"], {
+    const promptConfig = JSON.parse(fs.readFileSync(path.join(promptDist, "opencode.json"), "utf8")) as {
+      skills?: string[];
+    };
+    expect(promptConfig.skills).toEqual(["./.opencode/skills"]);
+    expect(fs.existsSync(path.join(promptDist, ".opencode/skills/prompt-creator/SKILL.md"))).toBe(true);
+    expect(fs.existsSync(path.join(promptDist, ".opencode/skills/skill-creator/SKILL.md"))).toBe(true);
+    const promptDebugConfig = execFileSync("opencode", ["debug", "config"], {
       cwd: promptDist,
       env,
       encoding: "utf8",
     });
-    expect(promptSkills).toContain('"name": "prompt-creator"');
-    expect(promptSkills).toContain('"name": "skill-creator"');
+    expect(promptDebugConfig).toContain("./.opencode/skills");
+    expect(promptDebugConfig).toContain(".opencode");
+
+    if (isOpenCodeV2) {
+      const dockhandApiConfig = execFileSync("opencode", ["api", "--standalone", "GET", "/api/config"], {
+        cwd: dockhandDist,
+        env,
+        encoding: "utf8",
+      });
+      expect(dockhandApiConfig).toContain("https://example.invalid/mcp");
+      expect(dockhandApiConfig).toContain("Bearer test-token");
+    } else {
+      const dockhandSkills = execFileSync("opencode", ["debug", "skill"], {
+        cwd: dockhandDist,
+        env,
+        encoding: "utf8",
+      });
+      expect(dockhandSkills).toContain('"name": "dockhand-gitops"');
+
+      const promptSkills = execFileSync("opencode", ["debug", "skill"], {
+        cwd: promptDist,
+        env,
+        encoding: "utf8",
+      });
+      expect(promptSkills).toContain('"name": "prompt-creator"');
+      expect(promptSkills).toContain('"name": "skill-creator"');
+    }
   }, 30_000);
 
   it("emits, verifies, and runs behavioral Pi package install/list checks for dockhand-gitops and prompt-engineering", async () => {

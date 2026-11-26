@@ -90,6 +90,20 @@ export class OpenCodeCliAdapter implements HarnessAdapter {
       fs.cpSync(overrideDir, outputDir, { recursive: true });
     }
 
+    const openCodeConfigPath = path.join(outputDir, "opencode.json");
+    const hasSkills = fs.existsSync(path.join(outputDir, ".opencode/skills"));
+    let openCodeConfig: Record<string, unknown> = {};
+    if (fs.existsSync(openCodeConfigPath)) {
+      openCodeConfig = JSON.parse(fs.readFileSync(openCodeConfigPath, "utf8")) as Record<string, unknown>;
+    }
+    if (!openCodeConfig.$schema) {
+      openCodeConfig.$schema = "https://opencode.ai/config.json";
+    }
+    if (hasSkills && !openCodeConfig.skills) {
+      openCodeConfig.skills = ["./.opencode/skills"];
+    }
+    fs.writeFileSync(openCodeConfigPath, `${JSON.stringify(openCodeConfig, null, 2)}\n`);
+
     const report = generateCompatibilityReport(plan);
     const compatibilityPath = path.join(outputDir, "compatibility.json");
     fs.writeFileSync(compatibilityPath, `${JSON.stringify(report, null, 2)}\n`);
@@ -126,11 +140,22 @@ export class OpenCodeCliAdapter implements HarnessAdapter {
     }
 
     const openCodeConfigPath = path.join(outputDir, "opencode.json");
-    if (fs.existsSync(openCodeConfigPath)) {
+    if (!fs.existsSync(openCodeConfigPath)) {
+      errors.push("Missing opencode.json");
+    } else {
       try {
         const parsed = JSON.parse(fs.readFileSync(openCodeConfigPath, "utf8")) as Record<string, unknown>;
         if (parsed.$schema !== "https://opencode.ai/config.json") {
           errors.push("opencode.json must declare $schema: https://opencode.ai/config.json");
+        }
+        if (fs.existsSync(skillsDir) && (!Array.isArray(parsed.skills) || parsed.skills.length === 0)) {
+          errors.push("opencode.json must declare skills paths when .opencode/skills exists");
+        }
+        if (parsed.mcp !== undefined) {
+          const mcp = parsed.mcp as Record<string, unknown> | null;
+          if (!mcp || typeof mcp !== "object" || !mcp.servers || typeof mcp.servers !== "object") {
+            errors.push("opencode.json mcp must declare a servers object for OpenCode v2");
+          }
         }
       } catch (err) {
         errors.push(`Invalid opencode.json: ${String(err)}`);
