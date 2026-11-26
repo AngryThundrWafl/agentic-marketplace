@@ -38,17 +38,18 @@ Add the `dockhand` server to `~/.copilot/mcp-config.json`:
 
 ### Optional Server-Side Filtering (`mcp-dockhand` Newer Than `v1.19.0`)
 
-`mcp-dockhand` `v1.19.0` exposes the full Dockhand API on the server side, so Antigravity relies on `enabledTools` in [`mcp_config.json`](mcp_config.json) and Claude Code / Copilot rely on skill guardrails. When running a newer `mcp-dockhand` release that supports `MCP_TOOLS_ALLOW`, you can mirror the exact 38-tool allowlist on the server via `MCP_TOOLS_ALLOW` (see [`skills/dockhand-gitops/references/tools-and-guardrails.md`](skills/dockhand-gitops/references/tools-and-guardrails.md)).
+`mcp-dockhand` `v1.19.0` exposes the full Dockhand API on the server side, so Antigravity relies on `enabledTools` in [`overrides/google.antigravity.app/mcp_config.json`](overrides/google.antigravity.app/mcp_config.json) and Claude Code / Copilot rely on skill guardrails. When running a newer `mcp-dockhand` release that supports `MCP_TOOLS_ALLOW`, you can mirror the exact 38-tool allowlist on the server via `MCP_TOOLS_ALLOW` (see [`agent-plugin/skills/dockhand-gitops/references/tools-and-guardrails.md`](agent-plugin/skills/dockhand-gitops/references/tools-and-guardrails.md)).
 
 ## Contents
 
-- `plugin.json` — Agent Plugins `v1.0.0` manifest.
-- `.antigravity-plugin/plugin.json` — Google Antigravity `v1` manifest with `displayName` and `suggestedPrompts`.
-- `mcp_config.json` — Antigravity Streamable HTTP config (`serverUrl`, `Authorization` Bearer header, `variables`, `enabledTools`).
-- `.mcp.json` — Claude Code HTTP MCP config (`${DOCKHAND_MCP_URL}` and `${DOCKHAND_MCP_AUTH_TOKEN}`).
-- `skills/dockhand-gitops/SKILL.md` — End-to-end GitOps validation and confirmation-gated container lifecycle workflow.
-- `skills/dockhand-gitops/references/tools-and-guardrails.md` — Verified `v1.19.0` 38-tool allowlist and excluded high-risk tools.
-- `skills/dockhand-gitops/references/gitops-validation.md` — GitOps topology, desired-vs-live validation checklist, and report template.
+- `agent-plugin/plugin.json` — Agent Plugins `v1.0.0` manifest.
+- `overrides/google.antigravity.app/.antigravity-plugin/plugin.json` — Google Antigravity `v1` manifest with `displayName` and `suggestedPrompts`.
+- `overrides/google.antigravity.app/mcp_config.json` — Antigravity Streamable HTTP config (`serverUrl`, `Authorization` Bearer header, `variables`, `enabledTools`).
+- `overrides/anthropic.claude-code.cli/.mcp.json` — Claude Code HTTP MCP config (`${DOCKHAND_MCP_URL}` and `${DOCKHAND_MCP_AUTH_TOKEN}`).
+- `overrides/opencode.opencode.cli/opencode.json` — OpenCode remote MCP config (`{env:DOCKHAND_MCP_URL}` and `{env:DOCKHAND_MCP_AUTH_TOKEN}`).
+- `agent-plugin/skills/dockhand-gitops/SKILL.md` — End-to-end GitOps validation and confirmation-gated container lifecycle workflow.
+- `agent-plugin/skills/dockhand-gitops/references/tools-and-guardrails.md` — Verified `v1.19.0` 38-tool allowlist and excluded high-risk tools.
+- `agent-plugin/skills/dockhand-gitops/references/gitops-validation.md` — GitOps topology, desired-vs-live validation checklist, and report template.
 
 ## Changelog
 

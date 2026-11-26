@@ -38,6 +38,6 @@ Run every check below against the target skill directory (and any referenced plu
 
 ## 5. Validation, Versioning & Eval Readiness
 
-- [ ] **Schema & repo validation:** `skills-ref validate ./<skill-dir>` (if installed), the host marketplace repository's validation suite when applicable (e.g., `npm run build && npm test && npm run validate`), and `agy plugin validate ./plugins/<plugin>` (without `--strict`, if installed) pass with zero errors.
+- [ ] **Schema & repo validation:** `skills-ref validate ./<skill-dir>` (if installed), the host marketplace repository's validation suite when applicable (e.g., `npm run build && npm test && npm run validate`), and `agy plugin validate <plugin-root>` (for example `./plugins/<plugin>/agent-plugin` or `./dist/<plugin>/google.antigravity.app`, without `--strict`, if installed) pass with zero errors.
 - [ ] **Version synchronization:** On content changes to a shipped plugin skill, `version` is bumped consistently across `plugin.json`, `.antigravity-plugin/plugin.json` (if present), `.claude-plugin/marketplace.json`, and `SKILL.md` `metadata.version` `[General]`.
 - [ ] **Eval & iteration plan:** Authoring spec or companion eval suite (kept outside lean runtime `SKILL.md`) defines measurable success criteria, trigger/non-trigger test cases, and a one-change-per-iteration refinement loop; mark `N/A` when auditing packaged skills without an attached eval harness `[Claude docs]` `[General]`.

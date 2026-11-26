@@ -11,7 +11,7 @@
 - **Phase 2:** MCP validation (`mcp.json`, reserved env-key checks, HTTPS/loopback checks), secrets scan, resolved path containment, and per-component failure isolation.
 - **Phase 3:** `capabilities/` registry + evidence files + typed `NormalizedPlugin` model + `meta.json`.
 - **Phase 4:** Translation `plan()` + `compatibility.json` / `COMPATIBILITY.md` generator (tested on fixtures before writing target emitters).
-- **Phase 5:** **First adapter end-to-end** (`build/adapters/copilot/` or `build/adapters/claude-code/`, chosen via ADR) with behavioral runtime tests.
+- **Phase 5:** **First adapter end-to-end** (`build/adapters/github.copilot.cli/` or `build/adapters/anthropic.claude-code.cli/`, chosen via ADR) with behavioral runtime tests.
 - **Phase 6:** Remaining adapters sequentially, one verified before the next begins.
 - **Phase 7:** Canonical `agents/`, `commands/`, and `rules/` with per-adapter `permissions.md` matrices.
 - **Phase 8:** Canonical `hooks/` and native `overrides/<target>/` in isolated sandbox tests.

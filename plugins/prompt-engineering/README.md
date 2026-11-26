@@ -1,41 +1,44 @@
 # prompt-engineering
 
-A portable Agent Plugins v1.0.0 and Google Antigravity v1 package providing a shared, live-distilled **Prompting Reference Pack** (`reference/`) and two progressive-disclosure skills (`skill-creator` and `prompt-creator`) for Claude, Google Gemini, and open-weight model families.
+A portable Agent Plugins v1.0.0 and Google Antigravity v1 package providing a self-contained **Prompting Reference Pack** (`references/pack/` inside each skill) and two progressive-disclosure skills (`skill-creator` and `prompt-creator`) for Claude, Google Gemini, and open-weight model families.
 
 ## Contents
 
-### Shared Reference Pack (`reference/`)
+### Bundled Reference Pack (`agent-plugin/skills/*/references/pack/`)
 
-Every file under `reference/` is a self-contained, single-topic **leaf document** distilled from official Claude Platform documentation, Google Gemini API docs and DeepMind model cards, open-weight model cards/vendor guides, and the Agent Plugins / Agent Skills specifications (see `reference/sources.md` for exact URLs and fetch dates). Claims are tagged `[Claude docs]`, `[Vendor]`, or `[General]`, and gaps where sources are silent are marked `unverified`.
+Every file under `references/pack/` is a self-contained, single-topic **leaf document** bundled with each skill and distilled from official Claude Platform documentation, Google Gemini API docs and DeepMind model cards, open-weight model cards/vendor guides, and the Agent Plugins / Agent Skills specifications (see `references/pack/sources.md` for exact URLs and fetch dates). Claims are tagged `[Claude docs]`, `[Vendor]`, or `[General]`, and gaps where sources are silent are marked `unverified`.
 
-See [`reference/README.md`](reference/README.md) for the human/maintainer catalog of all 22 files (`README.md`, `sources.md`, `01`, `03`–`21`).
+See [`agent-plugin/skills/prompt-creator/references/pack/README.md`](agent-plugin/skills/prompt-creator/references/pack/README.md) for the human/maintainer catalog of all 22 files (`README.md`, `sources.md`, `01`, `03`–`21`).
 
-### Skills (`skills/`)
+### Skills (`agent-plugin/skills/`)
 
-Per the Agent Plugins v1.0.0 specification, skills are discovered from immediate subdirectories of `skills/`:
+Per the Agent Plugins v1.0.0 specification, skills are discovered from immediate subdirectories of `agent-plugin/skills/`:
 
-1. **`skills/skill-creator/`** — Creates, updates, and audits portable Agent Skills that follow the `agentskills.io` specification and the distilled Prompting Reference Pack.
+1. **`agent-plugin/skills/skill-creator/`** — Creates, updates, and audits portable Agent Skills that follow the `agentskills.io` specification and the distilled Prompting Reference Pack.
    - `SKILL.md` — Thin trigger and one-level-deep progressive-disclosure router.
    - `references/authoring-guide.md` — Step-by-step leaf authoring procedure.
    - `references/checklist.md` — Reusable structural, progressive-disclosure, and prompting-hygiene verification checklist.
-2. **`skills/prompt-creator/`** — Designs, versions, and tests prompts for Claude, Google Gemini, and open-weight models using the 8-section output contract (`Target` / `Spec` / `Prompt` / `Why` / `Settings` / `Tests` / `Changelog` / `Limitations`).
+2. **`agent-plugin/skills/prompt-creator/`** — Designs, versions, and tests prompts for Claude, Google Gemini, and open-weight models using the 8-section output contract (`Target` / `Spec` / `Prompt` / `Why` / `Settings` / `Tests` / `Changelog` / `Limitations`).
    - `SKILL.md` — Thin trigger and one-level-deep progressive-disclosure router.
    - `references/authoring-guide.md` — End-to-end leaf workflow and 8-section output contract.
    - `references/checklist.md` — Binary deliverable verification checklist grounded in loaded reference files.
 
 ## How Agents Load This Plugin
 
-1. **Startup (Metadata):** The host loads `name` and `description` from each `skills/*/SKILL.md`.
+1. **Startup (Metadata):** The host loads `name` and `description` from each `agent-plugin/skills/*/SKILL.md`.
 2. **Activation (Thin Router):** When a task matches `skill-creator` or `prompt-creator`, the agent loads that skill's `SKILL.md`.
-3. **Execution (Flat, On-Demand Leaf Loading):** `SKILL.md` routes directly (one level deep, no nested reference chains) to only the needed skill guide (`references/authoring-guide.md` or `references/checklist.md`) and the matching `reference/*.md` leaf file(s) for the target model family and task.
+3. **Execution (Flat, On-Demand Leaf Loading):** `SKILL.md` routes directly (one level deep, no nested reference chains) to only the needed skill guide (`references/authoring-guide.md` or `references/checklist.md`) and the matching `references/pack/*.md` leaf file(s) for the target model family and task.
 
 ## Scope & Manifests
 
-- Portable manifest: `plugin.json` (`https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`).
-- Antigravity manifest: `.antigravity-plugin/plugin.json` (`https://antigravity.google/schemas/v1/plugin.json`).
+- Portable manifest: `agent-plugin/plugin.json` (`https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`).
+- Antigravity manifest: `overrides/google.antigravity.app/.antigravity-plugin/plugin.json` (`https://antigravity.google/schemas/v1/plugin.json`).
 - No `mcp.json` / `mcp_config.json` servers are included in this plugin.
 
 ## Changelog
+
+### 1.4.1 (2026-11-26)
+- Updated `agent-plugin/skills/skill-creator/references/checklist.md` so `agy plugin validate` references `<plugin-root>` (e.g. `./plugins/<plugin>/agent-plugin` or `./dist/<plugin>/google.antigravity.app`).
 
 ### 1.4.0 (2026-11-24)
 - Added Google Gemini model-specific leaf reference guides (`reference/20-gemini-4.md` for `gemini-4-carbon`, `gemini-4-neon`, `gemini-4-hydrogen`, `gemini-4-argon` and `reference/21-gemini-3-8-flash.md` for `gemini-3.8-flash`) grounded in Google Gemini API documentation and DeepMind model cards.
