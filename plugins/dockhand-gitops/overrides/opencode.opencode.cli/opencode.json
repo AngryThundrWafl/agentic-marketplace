@@ -1,11 +1,13 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "dockhand": {
-      "type": "remote",
-      "url": "{env:DOCKHAND_MCP_URL}",
-      "headers": {
-        "Authorization": "Bearer {env:DOCKHAND_MCP_AUTH_TOKEN}"
+    "servers": {
+      "dockhand": {
+        "type": "remote",
+        "url": "{env:DOCKHAND_MCP_URL}",
+        "headers": {
+          "Authorization": "Bearer {env:DOCKHAND_MCP_AUTH_TOKEN}"
+        }
       }
     }
   }

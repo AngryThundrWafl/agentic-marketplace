@@ -132,6 +132,12 @@ export class OpenCodeCliAdapter implements HarnessAdapter {
         if (parsed.$schema !== "https://opencode.ai/config.json") {
           errors.push("opencode.json must declare $schema: https://opencode.ai/config.json");
         }
+        if (parsed.mcp !== undefined) {
+          const mcp = parsed.mcp as Record<string, unknown> | null;
+          if (!mcp || typeof mcp !== "object" || !mcp.servers || typeof mcp.servers !== "object") {
+            errors.push("opencode.json mcp must declare a servers object for OpenCode v2");
+          }
+        }
       } catch (err) {
         errors.push(`Invalid opencode.json: ${String(err)}`);
       }

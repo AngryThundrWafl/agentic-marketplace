@@ -49,7 +49,7 @@ export class PiPackageAdapter implements HarnessAdapter {
 
     if (plugin.secrets.length > 0) {
       plan.securityWarnings.push(
-        "Pi packages do not define a portable MCP component; configure an external Pi MCP extension or user MCP settings for required servers.",
+        "Pi packages do not define a portable MCP component; configure required servers via `pi mcp add`, `.pi/mcp.json`, or `~/.pi/agent/mcp.json`.",
       );
     }
 
@@ -70,7 +70,7 @@ export class PiPackageAdapter implements HarnessAdapter {
     fs.rmSync(outputDir, { recursive: true, force: true });
     fs.mkdirSync(outputDir, { recursive: true });
 
-    for (const docFile of ["README.md", "LICENSE"]) {
+    for (const docFile of ["README.md", "LICENSE", "CHANGELOG.md"]) {
       const srcDoc = path.join(pluginDir, docFile);
       if (fs.existsSync(srcDoc)) {
         fs.copyFileSync(srcDoc, path.join(outputDir, docFile));

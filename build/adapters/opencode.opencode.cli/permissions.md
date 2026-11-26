@@ -6,4 +6,4 @@
 | `restricted-shell` | 2 | Scoped `permission.bash` command pattern map | Never mapped to unrestricted shell auto-approval. |
 | `approval-required` | 2 | `"ask"` permission policy | Interactive user approval required before execution. |
 | `tool-exclusion` | 1 | `"deny"` entry in `opencode.json` `permission` map | Explicitly blocks disallowed tools. |
-| `auth-required` | 2 | `{env:VAR}` interpolation in `opencode.json` `mcp.<name>` | Secrets never embedded in config files. |
+| `auth-required` | 2 | `{env:VAR}` interpolation in `opencode.json` `mcp.servers.<name>` | Secrets never embedded in config files. |

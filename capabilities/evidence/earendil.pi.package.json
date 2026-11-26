@@ -5,10 +5,10 @@
   "status": "native",
   "mechanism": "package.json (keywords: [\"pi-package\"], pi.skills: [\"./skills\"]) + pi install <path> + pi list",
   "documentationUrl": "https://github.com/earendil-works/pi-coding-agent",
-  "lastVerifiedDate": "2026-11-25",
-  "testedRuntimeVersion": "1.6.0",
+  "lastVerifiedDate": "2026-11-26",
+  "testedRuntimeVersion": "1.6.1",
   "testReference": "tests/opencode-and-pi-adapters.test.ts",
   "knownLimitations": [
-    "Pi packages do not define a portable MCP component; MCP requires a separate Pi extension or user config."
+    "Pi packages do not define a portable MCP component; MCP servers are configured separately via `pi mcp add`, `.pi/mcp.json`, or `~/.pi/agent/mcp.json`."
   ]
 }
