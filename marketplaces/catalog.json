@@ -4,7 +4,7 @@
   "entries": [
     {
       "plugin": "dockhand-gitops",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "target": "github.copilot.cli",
       "packageFormat": "agent-plugins-1.0",
       "adapterVersion": "0.1.0",
@@ -39,7 +39,7 @@
     },
     {
       "plugin": "dockhand-gitops",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "target": "anthropic.claude-code.cli",
       "packageFormat": "claude-native",
       "adapterVersion": "0.1.0",
@@ -74,7 +74,7 @@
     },
     {
       "plugin": "dockhand-gitops",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "target": "google.antigravity.app",
       "packageFormat": "antigravity-native",
       "adapterVersion": "0.1.0",
@@ -109,7 +109,7 @@
     },
     {
       "plugin": "dockhand-gitops",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "target": "opencode.opencode.cli",
       "packageFormat": "opencode-native",
       "adapterVersion": "0.1.0",
@@ -144,7 +144,7 @@
     },
     {
       "plugin": "dockhand-gitops",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "target": "earendil.pi.package",
       "packageFormat": "pi-package",
       "adapterVersion": "0.1.0",
@@ -179,7 +179,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "target": "github.copilot.cli",
       "packageFormat": "agent-plugins-1.0",
       "adapterVersion": "0.1.0",
@@ -202,7 +202,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "target": "anthropic.claude-code.cli",
       "packageFormat": "claude-native",
       "adapterVersion": "0.1.0",
@@ -225,7 +225,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "target": "google.antigravity.app",
       "packageFormat": "antigravity-native",
       "adapterVersion": "0.1.0",
@@ -247,7 +247,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "target": "opencode.opencode.cli",
       "packageFormat": "opencode-native",
       "adapterVersion": "0.1.0",
@@ -270,7 +270,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "target": "earendil.pi.package",
       "packageFormat": "pi-package",
       "adapterVersion": "0.1.0",

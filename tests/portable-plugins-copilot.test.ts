@@ -49,7 +49,7 @@ describe("migrated portable plugins", () => {
     expect(promptOut).toContain('Plugin "prompt-engineering" installed successfully. Installed 2 skills.');
 
     const listOut = execFileSync("copilot", ["plugin", "list"], { env, encoding: "utf8" });
-    expect(listOut).toContain("dockhand-gitops (v1.0.1)");
-    expect(listOut).toContain("prompt-engineering (v1.4.1)");
+    expect(listOut).toContain("dockhand-gitops (v1.0.2)");
+    expect(listOut).toContain("prompt-engineering (v1.4.2)");
   }, 30_000);
 });

@@ -36,13 +36,13 @@ describe("capability registry and NormalizedPlugin model", () => {
   it("normalizes dockhand-gitops and prompt-engineering into typed NormalizedPlugin models", () => {
     const dockhand = normalizePlugin(path.join(REPO_ROOT, "plugins/dockhand-gitops"), validators);
     expect(dockhand.name).toBe("dockhand-gitops");
-    expect(dockhand.version).toBe("1.0.1");
+    expect(dockhand.version).toBe("1.0.2");
     expect(dockhand.secrets.map((s) => s.name)).toEqual(["DOCKHAND_MCP_URL", "DOCKHAND_MCP_AUTH_TOKEN"]);
     expect(dockhand.components.some((c) => c.id === "dockhand-gitops:skill:dockhand-gitops")).toBe(true);
 
     const promptEng = normalizePlugin(path.join(REPO_ROOT, "plugins/prompt-engineering"), validators);
     expect(promptEng.name).toBe("prompt-engineering");
-    expect(promptEng.version).toBe("1.4.1");
+    expect(promptEng.version).toBe("1.4.2");
     expect(promptEng.components.filter((c) => c.type === "skill")).toHaveLength(2);
   });
 

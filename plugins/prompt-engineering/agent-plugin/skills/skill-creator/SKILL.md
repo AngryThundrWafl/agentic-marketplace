@@ -2,7 +2,7 @@
 name: skill-creator
 description: Creates, refactors, and audits portable Agent Skills (SKILL.md, frontmatter, references, scripts) against the agentskills.io spec and Anthropic authoring best practices. Use when writing a new skill, restructuring an existing one, reviewing a skill or plugin for compliance, or fixing skill triggering.
 metadata:
-  version: "1.4.1"
+  version: "1.4.2"
 ---
 
 # Skill Creator

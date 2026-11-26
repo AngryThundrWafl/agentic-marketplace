@@ -4,7 +4,7 @@ description: Observe, validate, and troubleshoot multi-host GitOps Docker stacks
 license: MIT
 compatibility: Requires mcp-dockhand (v1.19.0+) reachable via DOCKHAND_MCP_URL with DOCKHAND_MCP_AUTH_TOKEN, plus a local checkout or GitHub access to the GitOps Compose repository.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Dockhand GitOps
