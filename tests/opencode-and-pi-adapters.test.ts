@@ -78,6 +78,9 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
       DOCKHAND_MCP_AUTH_TOKEN: "test-token",
     };
 
+    const openCodeVersion = execFileSync("opencode", ["--version"], { encoding: "utf8" }).trim();
+    const isOpenCodeV2 = /\bv?2\./.test(openCodeVersion);
+
     const dockhandDebugConfig = execFileSync("opencode", ["debug", "config"], {
       cwd: dockhandDist,
       env,
@@ -85,14 +88,6 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     });
     expect(dockhandDebugConfig).toContain("dockhand");
     expect(dockhandDebugConfig).toContain(".opencode");
-
-    const dockhandApiConfig = execFileSync("opencode", ["api", "--standalone", "GET", "/api/config"], {
-      cwd: dockhandDist,
-      env,
-      encoding: "utf8",
-    });
-    expect(dockhandApiConfig).toContain("https://example.invalid/mcp");
-    expect(dockhandApiConfig).toContain("Bearer test-token");
 
     const promptDist = path.join(outRoot1, "prompt-engineering/opencode.opencode.cli");
     const promptConfig = JSON.parse(fs.readFileSync(path.join(promptDist, "opencode.json"), "utf8")) as {
@@ -108,6 +103,31 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     });
     expect(promptDebugConfig).toContain("./.opencode/skills");
     expect(promptDebugConfig).toContain(".opencode");
+
+    if (isOpenCodeV2) {
+      const dockhandApiConfig = execFileSync("opencode", ["api", "--standalone", "GET", "/api/config"], {
+        cwd: dockhandDist,
+        env,
+        encoding: "utf8",
+      });
+      expect(dockhandApiConfig).toContain("https://example.invalid/mcp");
+      expect(dockhandApiConfig).toContain("Bearer test-token");
+    } else {
+      const dockhandSkills = execFileSync("opencode", ["debug", "skill"], {
+        cwd: dockhandDist,
+        env,
+        encoding: "utf8",
+      });
+      expect(dockhandSkills).toContain('"name": "dockhand-gitops"');
+
+      const promptSkills = execFileSync("opencode", ["debug", "skill"], {
+        cwd: promptDist,
+        env,
+        encoding: "utf8",
+      });
+      expect(promptSkills).toContain('"name": "prompt-creator"');
+      expect(promptSkills).toContain('"name": "skill-creator"');
+    }
   }, 30_000);
 
   it("emits, verifies, and runs behavioral Pi package install/list checks for dockhand-gitops and prompt-engineering", async () => {
