@@ -115,41 +115,26 @@ export class OpenCodeCliAdapter implements HarnessAdapter {
       keywords?: string[];
     };
 
-    const mcpServers =
-      openCodeConfig.mcp &&
-      typeof openCodeConfig.mcp === "object" &&
-      "servers" in openCodeConfig.mcp &&
-      openCodeConfig.mcp.servers &&
-      typeof openCodeConfig.mcp.servers === "object"
-        ? (openCodeConfig.mcp.servers as Record<string, unknown>)
-        : {};
-
+    const pluginId = `@angrythundrwafl/${sourceManifest.name}-opencode`;
     const pluginEntrySource = `import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const PKG_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SKILLS_DIR = path.join(PKG_DIR, ".opencode/skills");
-const MCP_SERVERS = ${JSON.stringify(mcpServers, null, 2)};
 
 /**
- * OpenCode plugin entrypoint registering bundled skills and MCP servers.
+ * OpenCode v2 plugin entrypoint registering bundled skills.
  */
-export default async function () {
-  return {
-    config: async (config) => {
-      const existingSkills = Array.isArray(config.skills) ? config.skills : [];
-      if (${String(hasSkills)} && !existingSkills.includes(SKILLS_DIR)) {
-        config.skills = [...existingSkills, SKILLS_DIR];
-      }
-      if (Object.keys(MCP_SERVERS).length > 0) {
-        config.mcp = config.mcp && typeof config.mcp === "object" ? config.mcp : {};
-        const existingServers =
-          config.mcp.servers && typeof config.mcp.servers === "object" ? config.mcp.servers : {};
-        config.mcp.servers = { ...MCP_SERVERS, ...existingServers };
-      }
-    },
-  };
-}
+export default {
+  id: ${JSON.stringify(pluginId)},
+  async setup(context) {
+    if (${String(hasSkills)} && context?.skill?.transform) {
+      await context.skill.transform((draft) => {
+        draft.source({ type: "directory", path: SKILLS_DIR });
+      });
+    }
+  },
+};
 `;
     fs.writeFileSync(path.join(outputDir, "index.js"), pluginEntrySource);
 

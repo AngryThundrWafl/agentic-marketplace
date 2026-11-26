@@ -37,6 +37,9 @@ Per the Agent Plugins v1.0.0 specification, skills are discovered from immediate
 
 ## Changelog
 
+### 1.4.2 (2026-11-26)
+- Updated emitted OpenCode v2 plugin `index.js` entrypoint to export `{ id, setup }`.
+
 ### 1.4.1 (2026-11-26)
 - Updated `agent-plugin/skills/skill-creator/references/checklist.md` so `agy plugin validate` references `<plugin-root>` (e.g. `./plugins/<plugin>/agent-plugin` or `./dist/<plugin>/google.antigravity.app`).
 

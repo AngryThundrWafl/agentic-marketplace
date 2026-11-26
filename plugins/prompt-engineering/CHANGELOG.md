@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.2 (2026-11-26)
+- Updated emitted OpenCode v2 plugin `index.js` entrypoint to export `{ id, setup }`.
+
 ## 1.4.1 (2026-11-26)
 - Updated `skill-creator` verification checklist to accept `<plugin-root>` for `agy plugin validate`.
 

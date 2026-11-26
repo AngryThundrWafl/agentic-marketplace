@@ -101,15 +101,23 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     expect(fs.existsSync(path.join(dockhandDist, "index.js"))).toBe(true);
 
     const dockhandPluginMod = (await import(path.join(dockhandDist, "index.js"))) as {
-      default: () => Promise<{ config: (cfg: Record<string, unknown>) => Promise<void> }>;
+      default: {
+        id: string;
+        setup: (context: {
+          skill: { transform: (cb: (draft: { source: (src: unknown) => void }) => void) => Promise<void> };
+        }) => Promise<void>;
+      };
     };
-    const dockhandPluginHooks = await dockhandPluginMod.default();
-    const simulatedOpenCodeConfig: Record<string, unknown> = {};
-    await dockhandPluginHooks.config(simulatedOpenCodeConfig);
-    expect(simulatedOpenCodeConfig.skills).toEqual([path.join(dockhandDist, ".opencode/skills")]);
-    expect(
-      (simulatedOpenCodeConfig.mcp as { servers?: { dockhand?: { url?: string } } })?.servers?.dockhand?.url,
-    ).toBe("{env:DOCKHAND_MCP_URL}");
+    expect(dockhandPluginMod.default.id).toBe("@angrythundrwafl/dockhand-gitops-opencode");
+    const registeredSkills: unknown[] = [];
+    await dockhandPluginMod.default.setup({
+      skill: {
+        transform: async (cb) => {
+          cb({ source: (src) => registeredSkills.push(src) });
+        },
+      },
+    });
+    expect(registeredSkills).toEqual([{ type: "directory", path: path.join(dockhandDist, ".opencode/skills") }]);
 
     const promptConfig = JSON.parse(fs.readFileSync(path.join(promptDist, "opencode.json"), "utf8")) as {
       skills?: string[];

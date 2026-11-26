@@ -23,7 +23,7 @@ describe("translation planning and compatibility report generation", () => {
     expect(report.omitted).toHaveLength(5);
 
     const md = renderCompatibilityMarkdown(report);
-    expect(md).toContain("dockhand-gitops (1.0.1)");
+    expect(md).toContain("dockhand-gitops (1.0.2)");
     expect(md).toContain("github.copilot.cli");
     expect(md).toContain("DOCKHAND_MCP_URL");
   });

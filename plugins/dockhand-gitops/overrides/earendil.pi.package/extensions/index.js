@@ -4,11 +4,21 @@
  * @param {import("@earendil-works/pi-coding-agent").ExtensionAPI} pi
  */
 export default function dockhandGitopsExtension(pi) {
+  const url = process.env.DOCKHAND_MCP_URL?.trim();
+  if (!url) {
+    return;
+  }
+
+  const token = process.env.DOCKHAND_MCP_AUTH_TOKEN?.trim();
   pi.registerMcpServer("dockhand", {
-    url: "${DOCKHAND_MCP_URL}",
-    headers: {
-      Authorization: "Bearer ${DOCKHAND_MCP_AUTH_TOKEN}",
-    },
+    url,
+    ...(token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      : {}),
     exposure: "direct",
     description: "Observe and validate multi-host GitOps Docker stacks via mcp-dockhand.",
   });
