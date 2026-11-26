@@ -12,6 +12,7 @@
     "test": "vitest run",
     "validate:plugins": "node --experimental-strip-types build/validate-plugins.ts",
     "build": "node --experimental-strip-types build/cli.ts",
+    "publish:npm": "node --experimental-strip-types build/publish.ts",
     "release-gate": "corepack pnpm typecheck && corepack pnpm test && corepack pnpm validate:plugins && corepack pnpm build"
   },
   "devDependencies": {

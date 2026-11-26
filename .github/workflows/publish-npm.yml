@@ -1,0 +1,39 @@
+name: Publish npm Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run npm publish --dry-run without publishing"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.23.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - name: Install harness CLIs for behavioral tests
+        run: npm install -g @github/copilot opencode-ai @earendil-works/pi-coding-agent
+      - run: pnpm release-gate
+      - name: Publish packages to npm via Trusted Publishing (OIDC)
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            pnpm publish:npm -- --dry-run
+          else
+            pnpm publish:npm
+          fi

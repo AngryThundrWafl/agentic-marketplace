@@ -83,6 +83,18 @@
         "opencode.opencode.cli": "exact",
         "earendil.pi.package": "unsupported"
       }
+    },
+    {
+      "id": "dockhand-gitops:native-override:pi-mcp",
+      "source": "overrides/earendil.pi.package/extensions/index.js",
+      "optional": true,
+      "translations": {
+        "github.copilot.cli": "unsupported",
+        "anthropic.claude-code.cli": "unsupported",
+        "google.antigravity.app": "unsupported",
+        "opencode.opencode.cli": "unsupported",
+        "earendil.pi.package": "exact"
+      }
     }
   ],
   "secrets": [

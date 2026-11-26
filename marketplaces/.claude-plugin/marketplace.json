@@ -12,7 +12,7 @@
       "description": "Observe and validate multi-host GitOps Docker stacks via mcp-dockhand with read-only monitoring and confirmation-gated container lifecycle controls.",
       "compatibility": {
         "emittedCount": 2,
-        "omittedCount": 3,
+        "omittedCount": 4,
         "securityWarnings": [
           "Plugin requires external secrets/config: DOCKHAND_MCP_URL (env), DOCKHAND_MCP_AUTH_TOKEN (env)",
           "Claude Code MCP servers and hooks execute outside the sandbox."

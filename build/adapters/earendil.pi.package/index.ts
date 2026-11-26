@@ -49,7 +49,7 @@ export class PiPackageAdapter implements HarnessAdapter {
 
     if (plugin.secrets.length > 0) {
       plan.securityWarnings.push(
-        "Pi packages do not define a portable MCP component; configure required servers via `pi mcp add`, `.pi/mcp.json`, or `~/.pi/agent/mcp.json`.",
+        "Requires environment variables (DOCKHAND_MCP_URL, DOCKHAND_MCP_AUTH_TOKEN) for the bundled Pi MCP extension.",
       );
     }
 
@@ -89,6 +89,10 @@ export class PiPackageAdapter implements HarnessAdapter {
       fs.cpSync(overrideDir, outputDir, { recursive: true });
     }
 
+    if (fs.existsSync(path.join(outputDir, "extensions"))) {
+      piResources.extensions = ["./extensions"];
+    }
+
     const sourceManifest = JSON.parse(
       fs.readFileSync(path.join(pluginDir, "agent-plugin/plugin.json"), "utf8"),
     ) as {
@@ -101,13 +105,26 @@ export class PiPackageAdapter implements HarnessAdapter {
     };
 
     const keywords = Array.from(new Set(["pi-package", ...(sourceManifest.keywords ?? [])]));
+    const publishFiles = [
+      ...(piResources.skills ? ["skills"] : []),
+      ...(piResources.extensions ? ["extensions"] : []),
+      ...["README.md", "LICENSE", "CHANGELOG.md"].filter((docFile) => fs.existsSync(path.join(outputDir, docFile))),
+    ];
     const piPackageJson = {
-      name: sourceManifest.name,
+      name: `@angrythundrwafl/${sourceManifest.name}`,
       ...(sourceManifest.version ? { version: sourceManifest.version } : {}),
       ...(sourceManifest.description ? { description: sourceManifest.description } : {}),
       ...(sourceManifest.author?.name ? { author: sourceManifest.author.name } : {}),
       ...(sourceManifest.license ? { license: sourceManifest.license } : {}),
       keywords,
+      repository: {
+        type: "git",
+        url: "git+https://github.com/AngryThundrWafl/agentic-marketplace.git",
+      },
+      files: publishFiles,
+      publishConfig: {
+        access: "public",
+      },
       pi: piResources,
     };
 
@@ -153,7 +170,7 @@ export class PiPackageAdapter implements HarnessAdapter {
       const parsed = JSON.parse(fs.readFileSync(pkgPath, "utf8")) as {
         name?: unknown;
         keywords?: unknown;
-        pi?: { skills?: unknown };
+        pi?: { skills?: unknown; extensions?: unknown };
       };
       if (typeof parsed.name !== "string" || parsed.name.length === 0) {
         errors.push("package.json missing required name");
@@ -167,6 +184,17 @@ export class PiPackageAdapter implements HarnessAdapter {
         for (const rel of parsed.pi.skills) {
           if (typeof rel !== "string" || !fs.existsSync(path.resolve(outputDir, rel))) {
             errors.push(`package.json pi.skills path does not exist: ${String(rel)}`);
+          }
+        }
+      }
+      if (parsed.pi?.extensions !== undefined) {
+        if (!Array.isArray(parsed.pi.extensions)) {
+          errors.push("package.json pi.extensions must be an array");
+        } else {
+          for (const rel of parsed.pi.extensions) {
+            if (typeof rel !== "string" || !fs.existsSync(path.resolve(outputDir, rel))) {
+              errors.push(`package.json pi.extensions path does not exist: ${String(rel)}`);
+            }
           }
         }
       }
