@@ -42,7 +42,7 @@ describe("capability registry and NormalizedPlugin model", () => {
 
     const promptEng = normalizePlugin(path.join(REPO_ROOT, "plugins/prompt-engineering"), validators);
     expect(promptEng.name).toBe("prompt-engineering");
-    expect(promptEng.version).toBe("1.4.0");
+    expect(promptEng.version).toBe("1.4.1");
     expect(promptEng.components.filter((c) => c.type === "skill")).toHaveLength(2);
   });
 

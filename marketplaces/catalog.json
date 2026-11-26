@@ -159,7 +159,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "target": "github.copilot.cli",
       "packageFormat": "agent-plugins-1.0",
       "adapterVersion": "0.1.0",
@@ -182,7 +182,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "target": "anthropic.claude-code.cli",
       "packageFormat": "claude-native",
       "adapterVersion": "0.1.0",
@@ -205,7 +205,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "target": "google.antigravity.app",
       "packageFormat": "antigravity-native",
       "adapterVersion": "0.1.0",
@@ -227,7 +227,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "target": "opencode.opencode.cli",
       "packageFormat": "opencode-native",
       "adapterVersion": "0.1.0",
@@ -250,7 +250,7 @@
     },
     {
       "plugin": "prompt-engineering",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "target": "earendil.pi.package",
       "packageFormat": "pi-package",
       "adapterVersion": "0.1.0",

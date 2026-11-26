@@ -37,6 +37,9 @@ Per the Agent Plugins v1.0.0 specification, skills are discovered from immediate
 
 ## Changelog
 
+### 1.4.1 (2026-11-26)
+- Updated `agent-plugin/skills/skill-creator/references/checklist.md` so `agy plugin validate` references `<plugin-root>` (e.g. `./plugins/<plugin>/agent-plugin` or `./dist/<plugin>/google.antigravity.app`).
+
 ### 1.4.0 (2026-11-24)
 - Added Google Gemini model-specific leaf reference guides (`reference/20-gemini-4.md` for `gemini-4-carbon`, `gemini-4-neon`, `gemini-4-hydrogen`, `gemini-4-argon` and `reference/21-gemini-3-8-flash.md` for `gemini-3.8-flash`) grounded in Google Gemini API documentation and DeepMind model cards.
 - Updated `reference/sources.md`, `reference/10-model-delta-matrix.md`, `reference/03-overlap-and-porting.md`, and `reference/README.md` (catalog expanded to 22 files; broadened `[Vendor]` tag scope to cover first-party Gemini docs alongside open-weight vendor cards).
