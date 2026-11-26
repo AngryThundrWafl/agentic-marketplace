@@ -30,7 +30,7 @@ jobs:
       - name: Install harness CLIs for behavioral tests
         run: npm install -g @github/copilot opencode-ai @earendil-works/pi-coding-agent
       - run: pnpm release-gate
-      - name: Publish packages to npm via Trusted Publishing (OIDC)
+      - name: Stage packages for npm publish via Trusted Publishing (OIDC)
         run: |
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             pnpm publish:npm -- --dry-run

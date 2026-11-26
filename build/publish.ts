@@ -35,8 +35,8 @@ export function publishNpmPackages(options: { dryRun?: boolean; distRoot?: strin
       name: string;
       version?: string;
     };
-    const args = ["publish", "--access", "public", ...(dryRun ? ["--dry-run"] : [])];
-    console.log(`${dryRun ? "[dry-run] " : ""}Publishing ${pkg.name}@${pkg.version ?? "0.0.0"} from ${path.relative(REPO_ROOT, dir)}`);
+    const args = ["stage", "publish", "--access", "public", ...(dryRun ? ["--dry-run"] : [])];
+    console.log(`${dryRun ? "[dry-run] " : ""}Staging ${pkg.name}@${pkg.version ?? "0.0.0"} from ${path.relative(REPO_ROOT, dir)}`);
     execFileSync("npm", args, { cwd: dir, stdio: "inherit" });
   }
 }
