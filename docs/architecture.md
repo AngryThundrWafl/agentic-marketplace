@@ -114,12 +114,12 @@ agent-plugins/
 │       │   └── <reverse-domain>/      # reverse-domain client extensions ONLY
 │       ├── canonical/                 # non-portable source: agents/, commands/, rules/, hooks/
 │       ├── overrides/<target-id>/     # optional per-plugin hand-written native overrides
-│       └── tests/                     # fixtures/, structural/, behavioral/
+│       └── tests/                     # optional per-plugin tests (repo suites live in /tests/)
 ├── schemas/                           # pinned 1.0.0 plugin/mcp schemas + schemas/internal/
 ├── build/                             # TypeScript build & adapters (build/adapters/<target>/)
 ├── capabilities/                      # harnesses.yaml, features.yaml, evidence/
 ├── marketplaces/                      # committed catalog inputs ONLY
-├── tests/                             # conformance/, security/, integration/, golden/
+├── tests/                             # *.test.ts suites, fixtures/, sandbox/
 ├── dist/                              # generated — never committed, never hand-edited
 ├── docs/                              # architecture.md + one-level-deep contract docs
 ├── package.json
