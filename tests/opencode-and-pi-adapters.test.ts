@@ -64,8 +64,10 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     const openCodeConfigPath = path.join(dockhandDist, "opencode.json");
     expect(fs.existsSync(openCodeConfigPath)).toBe(true);
     const openCodeConfig = JSON.parse(fs.readFileSync(openCodeConfigPath, "utf8")) as {
+      skills?: string[];
       mcp?: { servers?: { dockhand?: { type?: string; url?: string } } };
     };
+    expect(openCodeConfig.skills).toEqual(["./.opencode/skills"]);
     expect(openCodeConfig.mcp?.servers?.dockhand?.type).toBe("remote");
     expect(openCodeConfig.mcp?.servers?.dockhand?.url).toBe("{env:DOCKHAND_MCP_URL}");
     expect(fs.existsSync(path.join(dockhandDist, ".opencode/skills/dockhand-gitops/SKILL.md"))).toBe(true);
@@ -93,6 +95,10 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     expect(dockhandApiConfig).toContain("Bearer test-token");
 
     const promptDist = path.join(outRoot1, "prompt-engineering/opencode.opencode.cli");
+    const promptConfig = JSON.parse(fs.readFileSync(path.join(promptDist, "opencode.json"), "utf8")) as {
+      skills?: string[];
+    };
+    expect(promptConfig.skills).toEqual(["./.opencode/skills"]);
     expect(fs.existsSync(path.join(promptDist, ".opencode/skills/prompt-creator/SKILL.md"))).toBe(true);
     expect(fs.existsSync(path.join(promptDist, ".opencode/skills/skill-creator/SKILL.md"))).toBe(true);
     const promptDebugConfig = execFileSync("opencode", ["debug", "config"], {
@@ -100,6 +106,7 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
       env,
       encoding: "utf8",
     });
+    expect(promptDebugConfig).toContain("./.opencode/skills");
     expect(promptDebugConfig).toContain(".opencode");
   }, 30_000);
 
