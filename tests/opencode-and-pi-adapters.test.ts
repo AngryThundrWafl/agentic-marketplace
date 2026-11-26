@@ -90,6 +90,27 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
     expect(dockhandDebugConfig).toContain(".opencode");
 
     const promptDist = path.join(outRoot1, "prompt-engineering/opencode.opencode.cli");
+    const dockhandPkg = JSON.parse(fs.readFileSync(path.join(dockhandDist, "package.json"), "utf8")) as {
+      name: string;
+      main: string;
+      files: string[];
+    };
+    expect(dockhandPkg.name).toBe("@angrythundrwafl/dockhand-gitops-opencode");
+    expect(dockhandPkg.main).toBe("./index.js");
+    expect(dockhandPkg.files).toContain(".opencode/skills");
+    expect(fs.existsSync(path.join(dockhandDist, "index.js"))).toBe(true);
+
+    const dockhandPluginMod = (await import(path.join(dockhandDist, "index.js"))) as {
+      default: () => Promise<{ config: (cfg: Record<string, unknown>) => Promise<void> }>;
+    };
+    const dockhandPluginHooks = await dockhandPluginMod.default();
+    const simulatedOpenCodeConfig: Record<string, unknown> = {};
+    await dockhandPluginHooks.config(simulatedOpenCodeConfig);
+    expect(simulatedOpenCodeConfig.skills).toEqual([path.join(dockhandDist, ".opencode/skills")]);
+    expect(
+      (simulatedOpenCodeConfig.mcp as { servers?: { dockhand?: { url?: string } } })?.servers?.dockhand?.url,
+    ).toBe("{env:DOCKHAND_MCP_URL}");
+
     const promptConfig = JSON.parse(fs.readFileSync(path.join(promptDist, "opencode.json"), "utf8")) as {
       skills?: string[];
     };
@@ -146,7 +167,7 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
       const plan = adapter.plan(plugin, target, registry);
 
       if (pluginName === "dockhand-gitops") {
-        expect(plan.securityWarnings.some((w) => w.includes("portable MCP component"))).toBe(true);
+        expect(plan.securityWarnings.some((w) => w.includes("DOCKHAND_MCP_URL"))).toBe(true);
       }
 
       const out1 = path.join(outRoot1, pluginName, "earendil.pi.package");
@@ -161,11 +182,15 @@ describe("opencode.opencode.cli and earendil.pi.package adapters", () => {
       const pkg = JSON.parse(fs.readFileSync(path.join(out1, "package.json"), "utf8")) as {
         name: string;
         keywords: string[];
-        pi: { skills: string[] };
+        pi: { skills: string[]; extensions?: string[] };
       };
-      expect(pkg.name).toBe(pluginName);
+      expect(pkg.name).toBe(`@angrythundrwafl/${pluginName}`);
       expect(pkg.keywords).toContain("pi-package");
       expect(pkg.pi.skills).toEqual(["./skills"]);
+      if (pluginName === "dockhand-gitops") {
+        expect(pkg.pi.extensions).toEqual(["./extensions"]);
+        expect(fs.existsSync(path.join(out1, "extensions/index.js"))).toBe(true);
+      }
 
       const m1 = JSON.parse(fs.readFileSync(path.join(out1, "manifest.json"), "utf8")) as ContentHashManifest;
       const m2 = JSON.parse(fs.readFileSync(path.join(out2, "manifest.json"), "utf8")) as ContentHashManifest;

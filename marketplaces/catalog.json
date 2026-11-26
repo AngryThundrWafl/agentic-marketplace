@@ -30,6 +30,10 @@
         {
           "id": "dockhand-gitops:native-override:opencode-mcp",
           "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:pi-mcp",
+          "optional": true
         }
       ]
     },
@@ -60,6 +64,10 @@
         },
         {
           "id": "dockhand-gitops:native-override:opencode-mcp",
+          "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:pi-mcp",
           "optional": true
         }
       ]
@@ -92,6 +100,10 @@
         {
           "id": "dockhand-gitops:native-override:opencode-mcp",
           "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:pi-mcp",
+          "optional": true
         }
       ]
     },
@@ -123,6 +135,10 @@
         {
           "id": "dockhand-gitops:native-override:claude-mcp",
           "optional": true
+        },
+        {
+          "id": "dockhand-gitops:native-override:pi-mcp",
+          "optional": true
         }
       ]
     },
@@ -135,6 +151,10 @@
       "emitted": [
         {
           "id": "dockhand-gitops:skill:dockhand-gitops",
+          "status": "exact"
+        },
+        {
+          "id": "dockhand-gitops:native-override:pi-mcp",
           "status": "exact"
         }
       ],

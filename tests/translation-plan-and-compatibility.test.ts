@@ -20,7 +20,7 @@ describe("translation planning and compatibility report generation", () => {
     const report = generateCompatibilityReport(plan);
     expect(validators.compatibility(report)).toBe(true);
     expect(report.emitted).toHaveLength(1);
-    expect(report.omitted).toHaveLength(4);
+    expect(report.omitted).toHaveLength(5);
 
     const md = renderCompatibilityMarkdown(report);
     expect(md).toContain("dockhand-gitops (1.0.1)");

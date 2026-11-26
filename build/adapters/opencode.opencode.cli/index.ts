@@ -104,6 +104,86 @@ export class OpenCodeCliAdapter implements HarnessAdapter {
     }
     fs.writeFileSync(openCodeConfigPath, `${JSON.stringify(openCodeConfig, null, 2)}\n`);
 
+    const sourceManifest = JSON.parse(
+      fs.readFileSync(path.join(pluginDir, "agent-plugin/plugin.json"), "utf8"),
+    ) as {
+      name: string;
+      version?: string;
+      description?: string;
+      author?: { name?: string };
+      license?: string;
+      keywords?: string[];
+    };
+
+    const mcpServers =
+      openCodeConfig.mcp &&
+      typeof openCodeConfig.mcp === "object" &&
+      "servers" in openCodeConfig.mcp &&
+      openCodeConfig.mcp.servers &&
+      typeof openCodeConfig.mcp.servers === "object"
+        ? (openCodeConfig.mcp.servers as Record<string, unknown>)
+        : {};
+
+    const pluginEntrySource = `import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const PKG_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SKILLS_DIR = path.join(PKG_DIR, ".opencode/skills");
+const MCP_SERVERS = ${JSON.stringify(mcpServers, null, 2)};
+
+/**
+ * OpenCode plugin entrypoint registering bundled skills and MCP servers.
+ */
+export default async function () {
+  return {
+    config: async (config) => {
+      const existingSkills = Array.isArray(config.skills) ? config.skills : [];
+      if (${String(hasSkills)} && !existingSkills.includes(SKILLS_DIR)) {
+        config.skills = [...existingSkills, SKILLS_DIR];
+      }
+      if (Object.keys(MCP_SERVERS).length > 0) {
+        config.mcp = config.mcp && typeof config.mcp === "object" ? config.mcp : {};
+        const existingServers =
+          config.mcp.servers && typeof config.mcp.servers === "object" ? config.mcp.servers : {};
+        config.mcp.servers = { ...MCP_SERVERS, ...existingServers };
+      }
+    },
+  };
+}
+`;
+    fs.writeFileSync(path.join(outputDir, "index.js"), pluginEntrySource);
+
+    const publishFiles = [
+      "index.js",
+      ...(hasSkills ? [".opencode/skills"] : []),
+      ...["README.md", "LICENSE", "CHANGELOG.md"].filter((docFile) => fs.existsSync(path.join(outputDir, docFile))),
+    ];
+    const openCodePkgJson = {
+      name: `@angrythundrwafl/${sourceManifest.name}-opencode`,
+      ...(sourceManifest.version ? { version: sourceManifest.version } : {}),
+      ...(sourceManifest.description ? { description: sourceManifest.description } : {}),
+      ...(sourceManifest.author?.name ? { author: sourceManifest.author.name } : {}),
+      ...(sourceManifest.license ? { license: sourceManifest.license } : {}),
+      keywords: Array.from(new Set(["opencode", "opencode-plugin", ...(sourceManifest.keywords ?? [])])),
+      repository: {
+        type: "git",
+        url: "git+https://github.com/AngryThundrWafl/agentic-marketplace.git",
+      },
+      type: "module",
+      main: "./index.js",
+      exports: {
+        ".": "./index.js",
+      },
+      files: publishFiles,
+      publishConfig: {
+        access: "public",
+      },
+    };
+    fs.writeFileSync(
+      path.join(outputDir, "package.json"),
+      `${JSON.stringify(openCodePkgJson, null, 2)}\n`,
+    );
+
     const report = generateCompatibilityReport(plan);
     const compatibilityPath = path.join(outputDir, "compatibility.json");
     fs.writeFileSync(compatibilityPath, `${JSON.stringify(report, null, 2)}\n`);
@@ -167,6 +247,22 @@ export class OpenCodeCliAdapter implements HarnessAdapter {
       errors.push("Missing compatibility.json");
     } else if (!this.validators.compatibility(JSON.parse(fs.readFileSync(compatPath, "utf8")))) {
       errors.push("Emitted compatibility.json failed schema validation");
+    }
+
+    const pkgPath = path.join(outputDir, "package.json");
+    if (!fs.existsSync(pkgPath)) {
+      errors.push("Missing package.json for OpenCode npm plugin");
+    } else {
+      const parsedPkg = JSON.parse(fs.readFileSync(pkgPath, "utf8")) as { name?: unknown; main?: unknown };
+      if (typeof parsedPkg.name !== "string" || parsedPkg.name.length === 0) {
+        errors.push("package.json missing required name");
+      }
+      if (parsedPkg.main !== "./index.js") {
+        errors.push("package.json main must point to ./index.js");
+      }
+    }
+    if (!fs.existsSync(path.join(outputDir, "index.js"))) {
+      errors.push("Missing index.js for OpenCode npm plugin");
     }
 
     if (!fs.existsSync(path.join(outputDir, "COMPATIBILITY.md"))) errors.push("Missing COMPATIBILITY.md");
