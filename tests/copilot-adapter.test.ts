@@ -70,6 +70,6 @@ describe("github.copilot.cli adapter end-to-end", () => {
 
     const listOut = execFileSync("copilot", ["plugin", "list"], { env, encoding: "utf8" });
     expect(listOut).toContain("dockhand-gitops (v1.0.2)");
-    expect(listOut).toContain("prompt-engineering (v1.4.2)");
+    expect(listOut).toContain("prompt-engineering (v1.5.0)");
   }, 30_000);
 });

@@ -6,8 +6,12 @@ source:
   - https://agent-plugins.org/specification
   - https://agent-plugins.org/schemas/1.0.0/plugin.schema.json
   - https://agentskills.io/specification.md
-fetched: 2026-11-24
-covers: Complete provenance table with exact source URLs, reference pack mappings, fetch date (2026-11-24), redirects, Google Gemini API docs and model cards, derived vs. embedded open-weight URLs, and Agent Plugins / Agent Skills spec URLs
+  - https://huggingface.co/thinkingmachines/Inkling-2-Mini
+  - https://thinkingmachines.ai/news/inkling-2-mini/
+  - https://recipes.vllm.ai/thinkingmachines/Inkling-2-Mini
+  - https://huggingface.co/mlx-community/Inkling-2-Mini-oQ4e-mtp
+fetched: 2026-11-26
+covers: Complete provenance table with exact source URLs, reference pack mappings, fetch dates (2026-11-24 / 2026-11-26), redirects, Google Gemini API docs and model cards, derived vs. embedded open-weight URLs, Thinking Machines Inkling 2 Mini sources, and Agent Plugins / Agent Skills spec URLs
 ---
 
 # Reference Pack Source Provenance
@@ -72,6 +76,10 @@ Contents: 1 Claude core · 2 Claude model-specific · 3 Open-weight cards · 4 G
 | `19-llama.md` | **Meta Llama 3.3 70B Instruct** | `https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct` | **Derived** from card; embeds `https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/LICENSE`. | `2026-11-24` |
 | `19-llama.md` | **Llama 3.3 & 4 Prompt Format Docs** | `https://github.com/meta-llama/llama-models` | **Derived** from model-card repo links. | `2026-11-24` |
 | `19-llama.md` | **Meta Llama 4 (`Scout` / `Maverick`)** | `https://huggingface.co/meta-llama` | **Derived** (exact HF repo slug not embedded); card embeds `https://github.com/meta-llama/llama-models/blob/main/models/llama4/LICENSE`. | `2026-11-24` |
+| `22-inkling.md` | **Thinking Machines `Inkling-2-Mini`** | `https://huggingface.co/thinkingmachines/Inkling-2-Mini` | **Embedded** directly in model card (`README.md`, `generation_config.json`, `chat_template.jinja`). | `2026-11-26` |
+| `22-inkling.md` | **Inkling 2 Mini Announcement** | `https://thinkingmachines.ai/news/inkling-2-mini/` | **Embedded** in model card §6 and vLLM recipe. | `2026-11-26` |
+| `22-inkling.md` | **vLLM Inkling 2 Mini Recipe** | `https://recipes.vllm.ai/thinkingmachines/Inkling-2-Mini` | **Embedded** in model card §2 (vLLM link). | `2026-11-26` |
+| `22-inkling.md` | **oMLX `Inkling-2-Mini-oQ4e-mtp`** | `https://huggingface.co/mlx-community/Inkling-2-Mini-oQ4e-mtp` | **Embedded** directly in MLX quantized model card (`base_model: thinkingmachines/Inkling-2-Mini`). | `2026-11-26` |
 
 ## 4. Google Gemini API Docs & DeepMind Model Cards (`20`–`21`, `[Vendor]`)
 

@@ -1,8 +1,8 @@
 ---
 name: prompt-creator
-description: Designs, tunes, ports, and tests prompts and system prompts for Claude (Fable, Opus, Sonnet, Haiku), Google Gemini (Gemini 4, Gemini 3.8 Flash), and open-weight models (DeepSeek-R1, Qwen3, gpt-oss, Llama), returning a versioned spec, prompt, runtime settings, and test cases. Use when writing a new prompt, improving or debugging an existing one, or migrating a prompt between models.
+description: Designs, tunes, ports, and tests prompts and system prompts for Claude (Fable, Opus, Sonnet, Haiku), Google Gemini (Gemini 4, Gemini 3.8 Flash), and open-weight models (DeepSeek-R1, Qwen3, gpt-oss, Llama, Inkling), returning a versioned spec, prompt, runtime settings, and test cases. Use when writing a new prompt, improving or debugging an existing one, or migrating a prompt between models.
 metadata:
-  version: "1.4.0"
+  version: "1.5.0"
 ---
 
 # Prompt Creator
@@ -15,7 +15,7 @@ Load only the resources needed for the active task so context stays focused on t
 
 - **Creating, tuning, or migrating a prompt:** Read [references/authoring-guide.md](references/authoring-guide.md) for the 7-step workflow and 8-section output contract.
 - **Verifying a prompt deliverable before returning:** Read [references/checklist.md](references/checklist.md) to run every pass/fail gate.
-- **Grounding in model & topic rules:** Read **only** the matching leaf file(s) below directly from `SKILL.md` before drafting. Load the target model file (`11`–`21`) first because model-specific behavior overrides general defaults (`01`, `03`–`09`).
+- **Grounding in model & topic rules:** Read **only** the matching leaf file(s) below directly from `SKILL.md` before drafting. Load the target model file (`11`–`22`) first because model-specific behavior overrides general defaults (`01`, `03`–`09`).
 
 | Target / Topic | Leaf Reference File |
 | --- | --- |
@@ -30,6 +30,7 @@ Load only the resources needed for the active task so context stays focused on t
 | Meta Llama 3.3 & Llama 4 (`Scout`, `Maverick`) | [references/pack/19-llama.md](references/pack/19-llama.md) |
 | Google Gemini 4 (`Carbon`, `Neon`, `Hydrogen`, `Argon`) | [references/pack/20-gemini-4.md](references/pack/20-gemini-4.md) |
 | Google Gemini 3.8 Flash (`gemini-3.8-flash`) | [references/pack/21-gemini-3-8-flash.md](references/pack/21-gemini-3-8-flash.md) |
+| Thinking Machines Inkling 2 Mini (`Inkling-2-Mini`, `oQ4e-mtp`) | [references/pack/22-inkling.md](references/pack/22-inkling.md) |
 | Claude core principles & prerequisites | [references/pack/01-claude-core.md](references/pack/01-claude-core.md) |
 | Cross-family overlap & porting rules | [references/pack/03-overlap-and-porting.md](references/pack/03-overlap-and-porting.md) |
 | Condensed Claude prompt skeletons | [references/pack/04-templates.md](references/pack/04-templates.md) |

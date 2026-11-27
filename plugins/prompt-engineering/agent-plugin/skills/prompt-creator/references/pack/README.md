@@ -6,7 +6,7 @@ source:
   - https://agent-plugins.org/specification
   - https://agentskills.io/specification.md
 fetched: 2026-11-24
-covers: Human and maintainer catalog of the 22-file Prompting Reference Pack (README + 01, 03-21 + sources.md) and confidence-tag definitions
+covers: Human and maintainer catalog of the 23-file Prompting Reference Pack (README + 01, 03-22 + sources.md) and confidence-tag definitions
 ---
 
 # Prompting Reference Pack Index
@@ -20,9 +20,9 @@ This directory contains self-contained, single-topic **leaf reference documents*
 - **`[General]`**: Cross-model or cross-section synthesis (including condensed templates and porting guidance) that requires empirical testing against target evals.
 - **`unverified`**: Official vendor/Claude sources are silent on that parameter, constraint, or technique—keep gaps explicit rather than extrapolating across models.
 
-## 2. Flat File Catalog (22 Files)
+## 2. Flat File Catalog (23 Files)
 
-### Model-Specific Leaf Guides (`11`–`21`) — Take Precedence Over General Defaults
+### Model-Specific Leaf Guides (`11`–`22`) — Take Precedence Over General Defaults
 
 | File | Scope | Primary Sources |
 | --- | --- | --- |
@@ -37,6 +37,7 @@ This directory contains self-contained, single-topic **leaf reference documents*
 | `19-llama.md` | Meta Llama 3.3 (`70B-Instruct`) & Llama 4 (`Scout`, `Maverick`): distinct special tokens, multimodal image encoding, system steerability, zero-shot tool calling & skeleton. | Meta Llama cards & format docs `[Vendor]` |
 | `20-gemini-4.md` | Google Gemini 4 (`Carbon`, `Neon`, `Hydrogen`, `Argon`): unified 1M context & long decodes, `thinking_level`, `thought_signature`, Interactions API, ignored sampling, implicit caching, `media_resolution`, Office/ODF inputs. | Google Gemini API docs & model cards `[Vendor]` |
 | `21-gemini-3-8-flash.md` | Google Gemini 3.8 Flash (`gemini-3.8-flash`): `low`/`medium`/`high` `thinking_level` (`minimal` unsupported), `65K` combined output cap, `temperature=1.0`, `thought_signature`, paired invariant framing. | Google Gemini API docs & model card `[Vendor]` |
+| `22-inkling.md` | Thinking Machines Inkling 2 Mini (`Inkling-2-Mini`, `oQ4e-mtp`): 3x looped middle layers, `1M` context, `reasoning_effort` (`0.0`–`0.99`), `temperature=1.0`, `<\|message_*\|>`/`<\|content_*\|>` tokens, tool calling, loop/sandbox guardrails. | Thinking Machines model card, vLLM recipe, oMLX card `[Vendor]` |
 
 ### Topic & Cross-Family Leaf Guides (`01`, `03`–`10`)
 
