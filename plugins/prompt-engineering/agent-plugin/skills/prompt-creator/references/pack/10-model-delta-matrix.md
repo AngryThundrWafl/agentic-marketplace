@@ -26,7 +26,11 @@ source:
   - https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf
   - https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Argon-Model-Card.pdf
   - https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-8-Flash-Model-Card.pdf
-fetched: 2026-11-24
+  - https://huggingface.co/thinkingmachines/Inkling-2-Mini
+  - https://thinkingmachines.ai/news/inkling-2-mini/
+  - https://recipes.vllm.ai/thinkingmachines/Inkling-2-Mini
+  - https://huggingface.co/mlx-community/Inkling-2-Mini-oQ4e-mtp
+fetched: 2026-11-26
 covers: Side-by-side matrix of covered Claude models, Google Gemini (Gemini 4 and 3.8 Flash), and open-weight families, migration triggers, and API compatibility snapshot
 ---
 
@@ -77,6 +81,7 @@ Contents: 1 Current Claude · 2 Legacy Claude · 3 Google Gemini · 4 Open-weigh
 | **Qwen3-2507** (`Instruct` / `Thinking`, `262K`/`1M` DCA) | Single-mode weights (`Thinking` injects `<think>`) | Same mode-matched presets as Qwen3 | Parse `</think>` (`151668`) on `Thinking-2507`; strip history `<think>`. |
 | **OpenAI `gpt-oss`** (`120b`, `20b`) | `Reasoning: low \| medium \| high` in `system` | `unverified` | **Harmony format mandatory**; custom rules in `developer`; hide `analysis`. |
 | **Meta Llama 3.3** (`70B`, `128K`) & **Llama 4** (`Scout` `10M`, `Maverick` `1M`) | None (`unverified`) | `unverified` | Distinct headers/stops (`<\|eot_id\|>` vs `<\|eot\|>`); Pythonic `[func(k=v)]` tools; external Llama Guard. |
+| **Inkling 2 Mini** (`26.4B` / `3.4B` base, `5.4B` eff., `1M`) | `reasoning_effort` (`0.0`–`0.99` / `"none"`..`"max"`, default `0.9`; cannot fully disable) | `do_sample: true`, `temp=1.0` (`top_p`/`top_k` `unverified`) | `<\|message_*\|>` + `<\|content_*\|>` blocks; 3x looped middle layers; cap `max_tokens`/turns & sandbox tools (`oQ4e-mtp` for oMLX). |
 
 ## 5. When to Upgrade & Re-Tune Prompts `[General]`
 

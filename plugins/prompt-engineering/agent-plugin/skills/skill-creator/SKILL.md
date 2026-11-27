@@ -2,7 +2,7 @@
 name: skill-creator
 description: Creates, refactors, and audits portable Agent Skills (SKILL.md, frontmatter, references, scripts) against the agentskills.io spec and Anthropic authoring best practices. Use when writing a new skill, restructuring an existing one, reviewing a skill or plugin for compliance, or fixing skill triggering.
 metadata:
-  version: "1.4.2"
+  version: "1.5.0"
 ---
 
 # Skill Creator
@@ -15,7 +15,7 @@ Load only the resources needed for the active task so startup and runtime contex
 
 - **Creating or refactoring a skill:** Read [references/authoring-guide.md](references/authoring-guide.md) for the 8-step authoring procedure.
 - **Auditing or verifying a skill:** Read [references/checklist.md](references/checklist.md) for the pass/fail verification rubric.
-- **Writing model- or task-specific prompting instructions:** Read **only** the matching leaf file(s) below directly from `SKILL.md`. Load model-specific files (`11`–`21`) before general files (`01`, `03`–`09`), since model-specific behavior overrides general defaults.
+- **Writing model- or task-specific prompting instructions:** Read **only** the matching leaf file(s) below directly from `SKILL.md`. Load model-specific files (`11`–`22`) before general files (`01`, `03`–`09`), since model-specific behavior overrides general defaults.
 
 | Target / Topic | Leaf Reference File |
 | --- | --- |
@@ -30,6 +30,7 @@ Load only the resources needed for the active task so startup and runtime contex
 | Meta Llama 3.3 & Llama 4 (`Scout`, `Maverick`) | [references/pack/19-llama.md](references/pack/19-llama.md) |
 | Google Gemini 4 (`Carbon`, `Neon`, `Hydrogen`, `Argon`) | [references/pack/20-gemini-4.md](references/pack/20-gemini-4.md) |
 | Google Gemini 3.8 Flash (`gemini-3.8-flash`) | [references/pack/21-gemini-3-8-flash.md](references/pack/21-gemini-3-8-flash.md) |
+| Thinking Machines Inkling 2 Mini (`Inkling-2-Mini`, `oQ4e-mtp`) | [references/pack/22-inkling.md](references/pack/22-inkling.md) |
 | Claude core principles (clarity, XML, few-shot, long context) | [references/pack/01-claude-core.md](references/pack/01-claude-core.md) |
 | Cross-family overlap & porting rules | [references/pack/03-overlap-and-porting.md](references/pack/03-overlap-and-porting.md) |
 | Condensed Claude prompt skeletons | [references/pack/04-templates.md](references/pack/04-templates.md) |

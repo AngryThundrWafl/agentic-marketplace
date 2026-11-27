@@ -8,7 +8,7 @@ A portable Agent Plugins v1.0.0 and Google Antigravity v1 package providing a se
 
 Every file under `references/pack/` is a self-contained, single-topic **leaf document** bundled with each skill and distilled from official Claude Platform documentation, Google Gemini API docs and DeepMind model cards, open-weight model cards/vendor guides, and the Agent Plugins / Agent Skills specifications (see `references/pack/sources.md` for exact URLs and fetch dates). Claims are tagged `[Claude docs]`, `[Vendor]`, or `[General]`, and gaps where sources are silent are marked `unverified`.
 
-See [`agent-plugin/skills/prompt-creator/references/pack/README.md`](agent-plugin/skills/prompt-creator/references/pack/README.md) for the human/maintainer catalog of all 22 files (`README.md`, `sources.md`, `01`, `03`–`21`).
+See [`agent-plugin/skills/prompt-creator/references/pack/README.md`](agent-plugin/skills/prompt-creator/references/pack/README.md) for the human/maintainer catalog of all 23 files (`README.md`, `sources.md`, `01`, `03`–`22`).
 
 ### Skills (`agent-plugin/skills/`)
 
@@ -36,6 +36,10 @@ Per the Agent Plugins v1.0.0 specification, skills are discovered from immediate
 - No `mcp.json` / `mcp_config.json` servers are included in this plugin.
 
 ## Changelog
+
+### 1.5.0 (2026-11-26)
+- Added Thinking Machines Lab Inkling 2 Mini leaf reference guide (`references/pack/22-inkling.md` for `thinkingmachines/Inkling-2-Mini` and `mlx-community/Inkling-2-Mini-oQ4e-mtp`) grounded in Thinking Machines Lab, vLLM, and oMLX model cards.
+- Updated `SKILL.md` routing tables, `10-model-delta-matrix.md`, `sources.md`, and `README.md`.
 
 ### 1.4.2 (2026-11-26)
 - Updated emitted OpenCode v2 plugin `index.js` entrypoint to export `{ id, setup }`.
